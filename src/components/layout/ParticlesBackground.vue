@@ -1,17 +1,10 @@
 <template>
     <div class="particles-container">
-        <vue-particles id="tsparticles" :options="particlesConfig" :particles-init="particlesInit" />
+        <vue-particles id="tsparticles" :options="particlesConfig" />
     </div>
 </template>
 
 <script setup>
-import { loadSlim } from '@tsparticles/slim';
-import { VueParticles } from '@tsparticles/vue3';
-
-const particlesInit = async (engine) => {
-    await loadSlim(engine);
-};
-
 const particlesConfig = {
     background: {
         color: {

@@ -10,7 +10,7 @@
 
         <SkillsSection />
 
-        <ProjectSection />
+        <ProjectsSection />
 
         <ExperienceSection />
 
@@ -22,15 +22,15 @@
 
 <script setup>
 import { onMounted } from 'vue';
-import ParticlesBackground from '@/components/ParticlesBackground.vue';
-import AppHeader from '@/components/AppHeader.vue';
-import HeroSection from '@/components/HeroSection.vue';
-import AboutSection from '@/components/AboutSection.vue';
-import SkillsSection from '@/components/SkillsSection.vue';
-import ProjectSection from '@/components/ProjectSection.vue';
-import ExperienceSection from '@/components/ExperienceSection.vue';
-import ContactSection from '@/components/ContactSection.vue';
-import AppFooter from '@/components/AppFooter.vue';
+import ParticlesBackground from '@/components/layout/ParticlesBackground.vue';
+import AppHeader from '@/components/layout/AppHeader.vue';
+import HeroSection from '@/components/sections/HeroSection.vue';
+import AboutSection from '@/components/sections/AboutSection.vue';
+import SkillsSection from '@/components/sections/SkillsSection.vue';
+import ProjectsSection from '@/components/sections/ProjectsSection.vue';
+import ExperienceSection from '@/components/sections/ExperienceSection.vue';
+import ContactSection from '@/components/sections/ContactSection.vue';
+import AppFooter from '@/components/layout/AppFooter.vue';
 import { useScrollAnimation } from '@/composables/useScrollAnimation';
 
 const { initScrollAnimation } = useScrollAnimation();

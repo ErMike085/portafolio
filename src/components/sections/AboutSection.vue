@@ -16,7 +16,7 @@
                 </div>
                 <div class="about-image" data-animate>
                     <div class="image-wrapper">
-                        <img src="/src/assets/images/profile.jpg" alt="Tu Nombre" />
+                        <img src="/src/assets/logo.svg" alt="Tu Nombre" />
                         <div class="image-glow"></div>
                     </div>
                 </div>
