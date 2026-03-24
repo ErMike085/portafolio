@@ -23,7 +23,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 const isScrolled = ref(false);
 const isMenuOpen = ref(false);
-const logoText = ref('<Miguel Muñoz/>'); // o tu nombre
+const logoText = ref('<Miguel Muñoz/>');
 
 const menuItems = ref([
     { id: 'home', label: 'Inicio' },
@@ -69,12 +69,13 @@ onUnmounted(() => {
     padding: 1rem 0;
     transition: all 0.3s ease;
     background: transparent;
+    border-bottom: 1px solid transparent;
 }
 
 .app-header.scrolled {
-    background: var(--glass-bg);
+    background: rgba(12, 10, 26, 0.9);
     backdrop-filter: var(--glass-blur);
-    border-bottom: 1px solid var(--glass-border);
+    border-bottom: 1px solid var(--glass-border-red);
     padding: 0.5rem 0;
 }
 
@@ -162,6 +163,7 @@ onUnmounted(() => {
         width: 100%;
         background: var(--glass-bg);
         backdrop-filter: var(--glass-blur);
+        border-radius: 0 0 var(--radius-md) var(--radius-md);
         flex-direction: column;
         align-items: center;
         gap: 1rem;
@@ -169,7 +171,7 @@ onUnmounted(() => {
         transform: translateY(-150%);
         opacity: 0;
         transition: all 0.3s ease;
-        border-bottom: 1px solid var(--glass-border);
+        border-bottom: 1px solid var(--glass-border-red);
     }
 
     .nav-menu.active {

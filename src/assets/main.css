@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=DM+Mono:wght@300;400;500&family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
 @import 'https://cdn.jsdelivr.net/npm/devicon@2.14.0/devicon.min.css';
 @import './styles/variables.css';
 @import './styles/globals.css';
@@ -21,7 +21,7 @@
   height: 100%;
   background: radial-gradient(
     circle at var(--mouse-x) var(--mouse-y),
-    rgba(138, 43, 226, calc(0.1 * var(--glow-intensity))),
+    rgba(var(--glow-red-rgb), calc(0.1 * var(--glow-intensity))),
     transparent 50%
   );
   pointer-events: none;

@@ -90,7 +90,7 @@ const links = ref([
 }
 
 .heart {
-    color: #ff4d4d;
+    color: var(--color-heart);
     animation: heartbeat 1.5s ease infinite;
 }
 

@@ -51,7 +51,7 @@ const handleMouseLeave = () => {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
-    border-radius: 2rem;
+    border-radius: var(--radius-pill);
     font-size: 0.9rem;
     color: var(--color-text-secondary);
     transition: all 0.3s ease;
@@ -66,6 +66,11 @@ const handleMouseLeave = () => {
     color: var(--color-text-primary);
     transform: translateY(-2px);
     box-shadow: var(--shadow-glow);
+}
+
+.tech-chip.is-interactive:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
 }
 
 .tech-chip i {

@@ -25,14 +25,9 @@ const experiences = ref(experienceData);
 }
 
 .section-title {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: var(--section-title-size);
+    margin-bottom: 3.25rem;
+    text-shadow: var(--text-glow-soft);
 }
 
 .timeline {

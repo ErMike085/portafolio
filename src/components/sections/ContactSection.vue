@@ -72,14 +72,9 @@ const handleSubmit = async () => {
 }
 
 .section-title {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: var(--section-title-size);
+    margin-bottom: 3.25rem;
+    text-shadow: var(--text-glow-soft);
 }
 
 .contact-content {
@@ -90,7 +85,7 @@ const handleSubmit = async () => {
 
 .contact-info h3 {
     font-size: 2rem;
-    color: var(--color-text-primary);
+    color: var(--color-accent-red-soft);
     margin-bottom: 1rem;
 }
 
@@ -113,7 +108,7 @@ const handleSubmit = async () => {
     color: var(--color-text-secondary);
     text-decoration: none;
     padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
+    border-radius: var(--radius-sm);
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
@@ -135,7 +130,7 @@ const handleSubmit = async () => {
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
-    border-radius: 1rem;
+    border-radius: var(--radius-md);
     padding: 2rem;
 }
 
@@ -151,10 +146,11 @@ const handleSubmit = async () => {
     font-size: 1rem;
     color: var(--color-text-primary);
     background: transparent;
-    border: none;
-    border-bottom: 2px solid var(--color-text-tertiary);
+    border: 1px solid var(--glass-border);
+    border-radius: var(--radius-sm);
+    padding: 0.82rem 0.9rem;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
 .form-group textarea {
@@ -164,8 +160,8 @@ const handleSubmit = async () => {
 
 .form-group label {
     position: absolute;
-    top: 0.75rem;
-    left: 0;
+    top: 0.84rem;
+    left: 0.9rem;
     color: var(--color-text-tertiary);
     pointer-events: none;
     transition: all 0.3s ease;
@@ -175,14 +171,16 @@ const handleSubmit = async () => {
 .form-group input:not(:placeholder-shown)~label,
 .form-group textarea:focus~label,
 .form-group textarea:not(:placeholder-shown)~label {
-    top: -1.2rem;
+    top: -1.05rem;
+    left: 0.25rem;
     font-size: 0.8rem;
     color: var(--color-accent-primary);
 }
 
 .form-group input:focus,
 .form-group textarea:focus {
-    border-bottom-color: var(--color-accent-primary);
+    border-color: var(--color-accent-primary);
+    box-shadow: var(--focus-ring);
 }
 
 @media (max-width: 768px) {

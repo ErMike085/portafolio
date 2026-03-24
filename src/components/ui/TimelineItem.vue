@@ -71,6 +71,8 @@ defineProps({
 .timeline-content {
     padding: 1.5rem;
     position: relative;
+    border: 1px solid var(--glass-border-red);
+    border-radius: var(--radius-md);
 }
 
 .timeline-date {
@@ -78,7 +80,7 @@ defineProps({
     padding: 0.3rem 1rem;
     background: var(--color-accent-primary);
     color: white;
-    border-radius: 2rem;
+    border-radius: var(--radius-pill);
     font-size: 0.8rem;
     margin-bottom: 1rem;
 }

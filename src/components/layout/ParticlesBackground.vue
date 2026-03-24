@@ -5,6 +5,15 @@
 </template>
 
 <script setup>
+const getCssVar = (name, fallback) => {
+    if (typeof window === 'undefined') {
+        return fallback;
+    }
+
+    const value = getComputedStyle(document.documentElement).getPropertyValue(name).trim();
+    return value || fallback;
+};
+
 const particlesConfig = {
     background: {
         color: {
@@ -14,10 +23,10 @@ const particlesConfig = {
     fpsLimit: 60,
     particles: {
         color: {
-            value: '#8a2be2'
+            value: getCssVar('--color-accent-tertiary', '#7c3aed')
         },
         links: {
-            color: '#8a2be2',
+            color: getCssVar('--color-accent-red', '#e05c6e'),
             distance: 150,
             enable: true,
             opacity: 0.2,

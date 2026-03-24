@@ -45,14 +45,9 @@ const categoryTitle = (key) => {
 }
 
 .section-title {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: var(--section-title-size);
+    margin-bottom: 3.25rem;
+    text-shadow: var(--text-glow-soft);
 }
 
 .skills-categories {
@@ -64,6 +59,8 @@ const categoryTitle = (key) => {
 .skill-category {
     padding: 1.5rem;
     transition: transform 0.3s ease;
+    border: 1px solid var(--glass-border-red);
+    border-radius: var(--radius-md);
 }
 
 .skill-category:hover {

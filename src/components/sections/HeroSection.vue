@@ -7,7 +7,7 @@
                 </div>
 
                 <h1 class="hero-title" data-animate>
-                    <GlowingText text="Tu Nombre" />
+                    <GlowingText text="MIGUEL MUÑOZ" />
                 </h1>
 
                 <div class="hero-subtitle" data-animate>
@@ -31,22 +31,18 @@
 
                 <div class="hero-stats" data-animate>
                     <div class="stat-item">
-                        <span class="stat-number">5+</span>
+                        <span class="stat-number">4+</span>
                         <span class="stat-label">Años Experiencia</span>
                     </div>
                     <div class="stat-item">
-                        <span class="stat-number">20+</span>
+                        <span class="stat-number">15+</span>
                         <span class="stat-label">Proyectos</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number">100%</span>
-                        <span class="stat-label">Satisfacción</span>
                     </div>
                 </div>
             </div>
 
             <div class="hero-scroll-indicator" @click="scrollToNext">
-                <span>Scroll</span>
+                <!-- <span>Scroll</span> -->
                 <div class="scroll-line"></div>
             </div>
         </div>
@@ -136,7 +132,7 @@ onUnmounted(() => {
     right: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--glow-violet) 0%, transparent 50%);
     animation: rotateGradient 20s linear infinite;
 }
 
@@ -159,8 +155,8 @@ onUnmounted(() => {
     padding: 0.5rem 1rem;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--color-accent-primary);
-    border-radius: 2rem;
+    border: 1px solid var(--glass-border-red);
+    border-radius: var(--radius-pill);
     font-size: 0.9rem;
     color: var(--color-accent-secondary);
     letter-spacing: 1px;
@@ -178,7 +174,8 @@ onUnmounted(() => {
     font-size: clamp(1.5rem, 4vw, 2.5rem);
     margin-bottom: 1.5rem;
     min-height: 4rem;
-    color: var(--color-accent-secondary);
+    color: var(--color-accent-red-soft);
+    text-shadow: var(--text-glow-soft);
     opacity: 0;
     animation: fadeInUp 0.6s ease 0.4s forwards;
 }

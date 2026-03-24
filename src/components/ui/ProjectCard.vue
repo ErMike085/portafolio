@@ -43,6 +43,8 @@ const isHovered = ref(false);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
+    border: 1px solid var(--glass-border-red);
+    border-radius: var(--radius-md);
 }
 
 .project-card:hover {
@@ -74,7 +76,7 @@ const isHovered = ref(false);
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.7);
+    background: var(--overlay-strong);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -98,7 +100,7 @@ const isHovered = ref(false);
     width: 40px;
     height: 40px;
     background: var(--color-accent-primary);
-    border-radius: 50%;
+    border-radius: var(--radius-pill);
     color: white;
     font-size: 1.2rem;
     transition: transform 0.3s ease;

@@ -16,7 +16,7 @@
                 </div>
                 <div class="about-image" data-animate>
                     <div class="image-wrapper">
-                        <img src="/src/assets/logo.svg" alt="Tu Nombre" />
+                        <img src="/src/assets/logo.svg" alt="Miguel Muñoz" />
                         <div class="image-glow"></div>
                     </div>
                 </div>
@@ -52,19 +52,14 @@ const values = ref([
     left: -50%;
     width: 200%;
     height: 200%;
-    background: radial-gradient(circle, rgba(138, 43, 226, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle, var(--glow-soft) 0%, transparent 70%);
     animation: rotateGradient 30s linear infinite;
 }
 
 .section-title {
-    font-family: var(--font-display);
-    font-size: 2.5rem;
-    text-align: center;
-    margin-bottom: 3rem;
-    background: var(--gradient-primary);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+    font-size: var(--section-title-size);
+    margin-bottom: 3.25rem;
+    text-shadow: var(--text-glow-soft);
 }
 
 .about-content {
@@ -76,7 +71,7 @@ const values = ref([
 
 .about-text .lead {
     font-size: 1.3rem;
-    color: var(--color-accent-secondary);
+    color: var(--color-accent-red-soft);
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
@@ -98,6 +93,8 @@ const values = ref([
     padding: 1.5rem;
     text-align: center;
     transition: transform 0.3s ease;
+    border: 1px solid var(--glass-border-red);
+    border-radius: var(--radius-md);
 }
 
 .value-card:hover {
@@ -147,7 +144,7 @@ const values = ref([
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 30%, rgba(138, 43, 226, 0.4), transparent 70%);
+    background: radial-gradient(circle at 30% 30%, var(--glow-red) 0%, transparent 70%);
     pointer-events: none;
     animation: glowPulse 4s infinite;
 }

@@ -17,7 +17,3 @@ onMounted(() => {
   document.documentElement.style.setProperty('--glow-intensity', glowIntensity.value);
 });
 </script>
-
-<style scoped>
-@import './assets/styles/main.css';
-</style>

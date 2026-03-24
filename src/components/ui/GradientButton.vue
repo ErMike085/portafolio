@@ -1,5 +1,5 @@
 <template>
-    <button :class="['gradient-btn', 'variant', { 'full-width': fullWidth }]" @click="$emit('click')">
+    <button :class="['gradient-btn', variant, { 'full-width': fullWidth }]" @click="$emit('click')">
         <span class="btn-content">
             <slot />
         </span>
@@ -25,9 +25,9 @@ defineEmits(['click']);
 <style scoped>
 .gradient-btn {
     position: relative;
-    padding: 0.75rem 2rem;
+    padding: var(--btn-padding-y) var(--btn-padding-x);
     border: none;
-    border-radius: 2rem;
+    border-radius: var(--radius-pill);
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
@@ -39,11 +39,12 @@ defineEmits(['click']);
 
 .gradient-btn.primary {
     background: var(--gradient-primary);
-    box-shadow: 0 0 20px rgba(138, 43, 226, 0.3);
+    border: 1px solid var(--glass-border-red);
+    box-shadow: var(--shadow-glow);
 }
 
 .gradient-btn.secondary {
-    border: 2px solid var(--color-accent-primary);
+    border: 1px solid var(--glass-border-red);
     background: transparent;
 }
 
@@ -59,7 +60,7 @@ defineEmits(['click']);
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    background: linear-gradient(90deg, transparent, var(--overlay-sheen), transparent);
     transition: left 0.5s ease;
 }
 
@@ -69,7 +70,12 @@ defineEmits(['click']);
 
 .gradient-btn:hover {
     transform: translateY(-2px);
-    box-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+    box-shadow: var(--shadow-glow-md);
+}
+
+.gradient-btn:focus-visible {
+    outline: none;
+    box-shadow: var(--focus-ring);
 }
 
 .btn-content {
