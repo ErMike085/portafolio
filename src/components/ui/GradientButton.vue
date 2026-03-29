@@ -38,19 +38,20 @@ defineEmits(['click']);
 }
 
 .gradient-btn.primary {
-    background: var(--gradient-primary);
-    border: 1px solid var(--glass-border-red);
-    box-shadow: var(--shadow-glow);
+    /* Softened gradient and borders */
+    background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.10));
+    border: 1px solid rgba(255,255,255,0.04);
+    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
 }
 
 .gradient-btn.secondary {
-    border: 1px solid var(--glass-border-red);
-    background: transparent;
+    border: 1px solid rgba(255,255,255,0.03);
+    background: rgba(255,255,255,0.02);
 }
 
 .gradient-btn.secondary:hover {
-    background: var(--gradient-primary);
-    border-color: transparent;
+    background: linear-gradient(90deg, rgba(124,58,237,0.08), rgba(6,182,212,0.06));
+    border-color: rgba(255,255,255,0.06);
 }
 
 .gradient-btn::before {
@@ -60,17 +61,19 @@ defineEmits(['click']);
     left: -100%;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, var(--overlay-sheen), transparent);
-    transition: left 0.5s ease;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    transition: left 0.45s ease, opacity 0.25s ease;
+    opacity: 0.7;
 }
 
 .gradient-btn:hover::before {
     left: 100%;
+    opacity: 1;
 }
 
 .gradient-btn:hover {
     transform: translateY(-2px);
-    box-shadow: var(--shadow-glow-md);
+    box-shadow: 0 10px 24px rgba(0,0,0,0.28);
 }
 
 .gradient-btn:focus-visible {

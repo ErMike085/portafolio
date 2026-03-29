@@ -2,12 +2,13 @@
     <div class="project-card glass" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <div class="project-image">
             <img :src="project.image" :alt="project.title" />
+            <div class="project-image-title">{{ project.title }}</div>
             <div class="image-overlay" :class="{ 'hovered': isHovered }">
                 <div class="project-links">
-                    <a v-if="project.github" :href="project.github" target="_blank" rel="noopener">
+                    <a v-if="project.github" :href="project.github" target="_blank" rel="noopener" aria-label="GitHub">
                         <i class="devicon-github-original"></i>
                     </a>
-                    <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener">
+                    <a v-if="project.demo" :href="project.demo" target="_blank" rel="noopener" aria-label="Demo">
                         <i class="fas fa-external-link-alt"></i>
                     </a>
                 </div>
@@ -27,11 +28,11 @@
 import { ref } from 'vue';
 import TechChip from './TechChip.vue';
 
-defineProps({
-    project: {
-        type: Object,
-        required: true
-    }
+const props = defineProps({
+  project: {
+    type: Object,
+    required: true,
+  },
 });
 
 const isHovered = ref(false);
@@ -43,19 +44,25 @@ const isHovered = ref(false);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    border: 1px solid var(--glass-border-red);
+    border: 1px solid transparent;
+    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    box-shadow: var(--shadow-md);
     border-radius: var(--radius-md);
+    background-origin: border-box;
+    position: relative;
 }
 
 .project-card:hover {
     transform: translateY(-5px);
-    box-shadow: var(--shadow-glow);
+    box-shadow: var(--shadow-glow-md);
 }
 
 .project-image {
     position: relative;
     width: 100%;
-    height: 200px;
+    height: 220px;
     overflow: hidden;
 }
 
@@ -76,12 +83,13 @@ const isHovered = ref(false);
     left: 0;
     width: 100%;
     height: 100%;
-    background: var(--overlay-strong);
+    background: linear-gradient(180deg, rgba(12,10,26,0.45), rgba(12,10,26,0.6));
     display: flex;
     align-items: center;
     justify-content: center;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.25s ease, backdrop-filter 0.25s ease;
+    backdrop-filter: blur(2px);
 }
 
 .image-overlay.hovered {
@@ -132,5 +140,18 @@ const isHovered = ref(false);
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+}
+
+.project-image-title {
+    position: absolute;
+    left: 1rem;
+    bottom: 1rem;
+    color: white;
+    font-weight: 700;
+    text-shadow: 0 6px 18px rgba(0,0,0,0.6);
+    background: linear-gradient(90deg, rgba(124,58,237,0.14), rgba(6,182,212,0.06));
+    padding: 0.35rem 0.6rem;
+    border-radius: 8px;
+    font-size: 1rem;
 }
 </style>

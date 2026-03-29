@@ -15,8 +15,7 @@
                     </div>
                 </div>
                 <div class="about-image" data-animate>
-                    <div class="image-wrapper">
-                        <img src="/src/assets/logo.svg" alt="Miguel Muñoz" />
+                    <div class="image-wrapper" aria-hidden="true">
                         <div class="image-glow"></div>
                     </div>
                 </div>
@@ -71,7 +70,7 @@ const values = ref([
 
 .about-text .lead {
     font-size: 1.3rem;
-    color: var(--color-accent-red-soft);
+    color: var(--color-accent-secondary);
     margin-bottom: 1.5rem;
     font-weight: 500;
 }
@@ -127,15 +126,11 @@ const values = ref([
     position: relative;
     width: 300px;
     height: 300px;
-    border-radius: 50%;
+    border-radius: 16px;
     overflow: hidden;
-    border: 3px solid var(--color-accent-primary);
-}
-
-.image-wrapper img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+    border: 2px solid rgba(255,255,255,0.04);
+    background: linear-gradient(135deg, rgba(var(--glow-violet-rgb),0.10), rgba(var(--glow-red-rgb),0.04));
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45);
 }
 
 .image-glow {
@@ -144,9 +139,9 @@ const values = ref([
     left: 0;
     width: 100%;
     height: 100%;
-    background: radial-gradient(circle at 30% 30%, var(--glow-red) 0%, transparent 70%);
+    background: radial-gradient(circle at 30% 30%, rgba(var(--glow-violet-rgb),0.12) 0%, transparent 65%);
     pointer-events: none;
-    animation: glowPulse 4s infinite;
+    animation: glowPulse 6s infinite;
 }
 
 @media (max-width: 768px) {

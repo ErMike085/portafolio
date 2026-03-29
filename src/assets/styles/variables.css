@@ -4,52 +4,25 @@
   --color-bg-secondary: #0c0a1a;
   --color-bg-tertiary: #130f24;
 
-  /* Accent base palette */
-  --color-accent-violet: #7c3aed;
-  --color-accent-lavender: #a78bfa;
-  --color-accent-magenta: #c026d3;
+  /* Accent base palette (unificada: violeta - cian - rosado) */
+  --color-accent-violet: #7c3aed; /* morado brillante */
+  --color-accent-cyan: #06b6d4;   /* cyan/teal */
+  --color-accent-pink: #fb7185;   /* rosa suave */
   --color-accent-deep: #4c1d95;
-  --color-accent-red: #e05c6e;
-  --color-accent-red-soft: #f87171;
-  --color-accent-red-dark: #b03050;
 
-  /* Theme roles (red-centric) */
-  --color-accent-primary: var(--color-accent-red);
-  --color-accent-secondary: var(--color-accent-red-soft);
-  --color-accent-tertiary: var(--color-accent-violet);
-  --color-accent-rose: var(--color-accent-magenta);
+  /* Theme roles (coherentes con la paleta) */
+  --color-accent-primary: var(--color-accent-violet);
+  --color-accent-secondary: var(--color-accent-cyan);
+  --color-accent-tertiary: var(--color-accent-pink);
+  --color-accent-rose: var(--color-accent-pink);
 
   /* Gradients */
-  --gradient-primary: linear-gradient(
-    135deg,
-    var(--color-accent-red) 0%,
-    var(--color-accent-violet) 50%,
-    var(--color-accent-magenta) 100%
-  );
-  --gradient-nebula: linear-gradient(
-    135deg,
-    var(--color-accent-red) 0%,
-    var(--color-accent-violet) 50%,
-    var(--color-accent-magenta) 100%
-  );
-  --gradient-stellar: linear-gradient(
-    135deg,
-    var(--color-accent-red) 0%,
-    var(--color-accent-violet) 100%
-  );
-  --gradient-title: linear-gradient(135deg, #dc2626 0%, #7c3aed 50%, #c026d3 100%);
-  --gradient-aurora: linear-gradient(
-    135deg,
-    var(--color-accent-magenta) 0%,
-    var(--color-accent-violet) 50%,
-    var(--color-accent-red) 100%
-  );
-  --gradient-text: linear-gradient(
-    90deg,
-    var(--color-accent-magenta),
-    var(--color-accent-lavender),
-    var(--color-accent-red)
-  );
+  --gradient-primary: linear-gradient(135deg, var(--color-accent-violet) 0%, var(--color-accent-cyan) 50%, var(--color-accent-pink) 100%);
+  --gradient-nebula: linear-gradient(135deg, var(--color-accent-violet) 0%, var(--color-accent-cyan) 50%, var(--color-accent-pink) 100%);
+  --gradient-stellar: linear-gradient(135deg, var(--color-accent-cyan) 0%, var(--color-accent-violet) 100%);
+  --gradient-title: linear-gradient(135deg, var(--color-accent-pink) 0%, var(--color-accent-violet) 50%, var(--color-accent-cyan) 100%);
+  --gradient-aurora: linear-gradient(135deg, var(--color-accent-pink) 0%, var(--color-accent-violet) 50%, var(--color-accent-cyan) 100%);
+  --gradient-text: linear-gradient(90deg, var(--color-accent-violet), var(--color-accent-cyan), var(--color-accent-pink));
   --gradient-glow: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.12), transparent 70%);
 
   /* Text */

@@ -4,7 +4,7 @@ export const projectsData = [
     title: 'Sistema de Gestión Empresarial',
     description:
       'ERP completo con módulos de inventario, facturación y RRHH desarrollado con Laravel y Vue.js.',
-    image: '/images/projects/erp-system.jpg',
+    image: '/images/projects/erp-system.svg',
     technologies: ['Vue.js', 'Laravel', 'MySQL', 'TailwindCSS'],
     github: 'https://github.com/tuusuario/erp-system',
     demo: 'https://erp-demo.com',
@@ -15,7 +15,7 @@ export const projectsData = [
     title: 'E-commerce Platform',
     description:
       'Plataforma de comercio electrónico con carrito de compras, pasarela de pagos y panel administrativo.',
-    image: '/images/projects/ecommerce.jpg',
+    image: '/images/projects/ecommerce.svg',
     technologies: ['Vue.js', 'PHP', 'MySQL', 'Stripe'],
     github: 'https://github.com/tuusuario/ecommerce',
     demo: 'https://ecommerce-demo.com',
@@ -25,7 +25,7 @@ export const projectsData = [
     id: 3,
     title: 'API RESTful para Gestión de Tareas',
     description: 'API completa con autenticación JWT, documentación Swagger y pruebas unitarias.',
-    image: '/images/projects/api-tasks.jpg',
+    image: '/images/projects/api-tasks.svg',
     technologies: ['Laravel', 'JWT', 'MySQL', 'Postman'],
     github: 'https://github.com/tuusuario/task-api',
     demo: 'https://api-demo.com',
@@ -36,7 +36,7 @@ export const projectsData = [
     title: 'Dashboard Analytics en Tiempo Real',
     description:
       'Dashboard interactivo con gráficos dinámicos y actualizaciones en tiempo real usando WebSockets.',
-    image: '/images/projects/dashboard.jpg',
+    image: '/images/projects/dashboard.svg',
     technologies: ['Vue.js', 'Laravel', 'WebSockets', 'Chart.js'],
     github: 'https://github.com/tuusuario/dashboard',
     demo: 'https://dashboard-demo.com',

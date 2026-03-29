@@ -19,6 +19,8 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   position: relative;
+  /* Evita que el contenido quede bajo el header fijo */
+  padding-top: var(--header-height, 72px);
 }
 
 h1,
@@ -120,4 +122,10 @@ section {
 
 ::-webkit-scrollbar-thumb:hover {
   background: var(--color-accent-secondary);
+}
+
+@media (max-width: 768px) {
+  body {
+    padding-top: var(--header-height-sm, 64px);
+  }
 }
