@@ -179,7 +179,7 @@ export default async function handler(req, res) {
     if (providerStatus === 403) {
       return json(res, 502, {
         ok: false,
-        message: 'Resend rechazo el remitente. Verifica CONTACT_FROM_EMAIL y dominio',
+        message: `Resend rechazo el remitente: ${providerMessage || 'sin detalle'}`,
       });
     }
 
