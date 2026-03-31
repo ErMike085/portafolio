@@ -1,14 +1,15 @@
 <template>
     <section class="skills-section" id="skills">
         <div class="container">
-            <h2 class="section-title" data-animate>Stack Tecnológico</h2>
+            <h2 class="section-title" data-animate>Stack Tecnologico</h2>
             <div class="skills-categories">
-                <div v-for="(category, name) in skills" :key="name" class="skill-category glass" data-animate>
+                <div v-for="([name, category]) in skillCategories" :key="name" class="skill-category glass">
                     <h3>{{ categoryTitle(name) }}</h3>
                     <div class="skills-list">
                         <div v-for="skill in category" :key="skill.name" class="skill-item">
                             <div class="skill-info">
-                                <i :class="'devicon-' + skill.icon + '-plain'"></i>
+                                <img v-if="isSupabase(skill.icon)" :src="supabaseIcon" alt="Supabase" class="skill-icon-image" />
+                                <i v-else :class="`devicon-${skill.icon}-plain`"></i>
                                 <span>{{ skill.name }}</span>
                             </div>
                             <div class="skill-bar">
@@ -23,10 +24,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import { skillsData } from '@/data/skills';
+import supabaseIcon from '@/assets/icons/supabase.svg';
 
-const skills = ref(skillsData);
+const skillCategories = computed(() => Object.entries(skillsData));
 
 const categoryTitle = (key) => {
     const titles = {
@@ -37,6 +39,8 @@ const categoryTitle = (key) => {
     };
     return titles[key] || key;
 };
+
+const isSupabase = (icon) => icon === 'supabase';
 </script>
 
 <style scoped>
@@ -59,7 +63,7 @@ const categoryTitle = (key) => {
 .skill-category {
     padding: 1.5rem;
     transition: transform 0.3s ease;
-    border: 1px solid var(--glass-border-red);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
 }
 
@@ -97,6 +101,12 @@ const categoryTitle = (key) => {
 .skill-info i {
     font-size: 1.2rem;
     color: var(--color-accent-primary);
+}
+
+.skill-icon-image {
+    width: 1.2rem;
+    height: 1.2rem;
+    object-fit: contain;
 }
 
 .skill-bar {

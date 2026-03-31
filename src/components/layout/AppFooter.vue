@@ -14,7 +14,7 @@
                 </div>
                 <div class="footer-copyright">
                     <p>&copy; {{ currentYear }} {{ name }}. Todos los derechos reservados.</p>
-                    <p>Diseñado y desarrollado con <span class="heart">❤️</span> y Vue.js</p>
+                    <p>Disenado y desarrollado con <span class="heart">&#10084;</span> y Vue.js</p>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@ const currentYear = new Date().getFullYear();
 
 const links = ref([
     { text: 'GitHub', icon: 'devicon-github-original', url: 'https://github.com/ErMike085' },
-    { text: 'LinkedIn', icon: 'devicon-linkedin-plain', url: 'https://www.linkedin.com/in/miguel-angel-muñoz-ortiz-8109931aa/' },
+    { text: 'LinkedIn', icon: 'devicon-linkedin-plain', url: 'https://www.linkedin.com/in/miguel-angel-munoz-ortiz-8109931aa/' },
 ]);
 </script>
 
@@ -62,7 +62,7 @@ const links = ref([
 
 .footer-links {
     display: flex;
-    gap: 2rem;
+    gap: 1rem;
     flex-wrap: wrap;
     justify-content: center;
 }
@@ -73,11 +73,17 @@ const links = ref([
     gap: 0.5rem;
     color: var(--color-text-secondary);
     text-decoration: none;
-    transition: color 0.3s ease;
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.6rem 0.9rem;
+    border-radius: var(--radius-pill);
+    transition: border-color 0.25s ease, color 0.25s ease, transform 0.25s ease;
 }
 
 .footer-links a:hover {
-    color: var(--color-accent-primary);
+    color: var(--color-text-primary);
+    border-color: rgba(207, 224, 255, 0.34);
+    transform: translateY(-2px);
 }
 
 .footer-links i {

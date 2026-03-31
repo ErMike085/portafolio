@@ -7,8 +7,14 @@ gsap.registerPlugin(ScrollTrigger)
 export function useScrollAnimation() {
   const sections = ref([])
 
+  const cleanup = () => {
+    ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
+  }
+
   const initScrollAnimations = () => {
-    // Animación para secciones al hacer scroll
+    cleanup()
+
+    // Animacion para secciones al hacer scroll
     sections.value = document.querySelectorAll('[data-animate]')
 
     sections.value.forEach((section) => {
@@ -26,7 +32,7 @@ export function useScrollAnimation() {
       })
     })
 
-    // Animación para timeline
+    // Animacion para timeline
     gsap.from('.timeline-item', {
       scrollTrigger: {
         trigger: '.timeline',
@@ -40,22 +46,20 @@ export function useScrollAnimation() {
       duration: 0.8,
     })
 
-    // Animación para skills
+    // Animacion para skills
     gsap.from('.skill-category', {
       scrollTrigger: {
         trigger: '.skills-section',
         start: 'top 80%',
         end: 'bottom 20%',
+        once: true,
       },
       opacity: 0,
       scale: 0.9,
       stagger: 0.2,
       duration: 0.6,
+      clearProps: 'opacity,transform',
     })
-  }
-
-  const cleanup = () => {
-    ScrollTrigger.getAll().forEach((trigger) => trigger.kill())
   }
 
   onMounted(() => {
@@ -67,6 +71,7 @@ export function useScrollAnimation() {
   })
 
   return {
+    initScrollAnimation: initScrollAnimations,
     initScrollAnimations,
   }
 }

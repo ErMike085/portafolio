@@ -26,54 +26,55 @@ defineEmits(['click']);
 .gradient-btn {
     position: relative;
     padding: var(--btn-padding-y) var(--btn-padding-x);
-    border: none;
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-pill);
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.96rem;
+    font-weight: 500;
+    letter-spacing: 0.01em;
     cursor: pointer;
     overflow: hidden;
-    transition: all 0.3s ease;
-    background: transparent;
+    transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
+    background: rgba(14, 22, 42, 0.7);
     color: var(--color-text-primary);
+    box-shadow: none;
 }
 
 .gradient-btn.primary {
-    /* Softened gradient and borders */
-    background: linear-gradient(90deg, rgba(124,58,237,0.12), rgba(6,182,212,0.10));
-    border: 1px solid rgba(255,255,255,0.04);
-    box-shadow: 0 6px 18px rgba(0,0,0,0.45);
+    background: rgba(14, 22, 42, 0.82);
+    border-color: rgba(168, 191, 241, 0.35);
+    color: var(--color-text-primary);
 }
 
 .gradient-btn.secondary {
-    border: 1px solid rgba(255,255,255,0.03);
-    background: rgba(255,255,255,0.02);
+    background: transparent;
+    border-color: rgba(168, 191, 241, 0.25);
+    color: var(--color-text-secondary);
 }
 
 .gradient-btn.secondary:hover {
-    background: linear-gradient(90deg, rgba(124,58,237,0.08), rgba(6,182,212,0.06));
-    border-color: rgba(255,255,255,0.06);
+    background: rgba(14, 22, 42, 0.55);
+    border-color: rgba(168, 191, 241, 0.38);
+    color: var(--color-text-primary);
 }
 
 .gradient-btn::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
-    transition: left 0.45s ease, opacity 0.25s ease;
-    opacity: 0.7;
+    content: none;
 }
 
 .gradient-btn:hover::before {
-    left: 100%;
-    opacity: 1;
+    content: none;
 }
 
 .gradient-btn:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 10px 24px rgba(0,0,0,0.28);
+    transform: translateY(-1px);
+    background: linear-gradient(
+        90deg,
+        rgba(139, 92, 246, 0.14),
+        rgba(34, 211, 238, 0.1),
+        rgba(244, 114, 182, 0.14)
+    );
+    box-shadow: 0 10px 24px -20px rgba(0, 0, 0, 0.9);
+    border-color: rgba(176, 202, 252, 0.45);
 }
 
 .gradient-btn:focus-visible {

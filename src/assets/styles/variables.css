@@ -1,70 +1,107 @@
 :root {
+  /* Layout */
+  --header-height: 74px;
+  --header-height-sm: 66px;
+  --section-spacing: clamp(4.5rem, 8vw, 6.5rem);
+  --container-padding: clamp(1.15rem, 3vw, 2rem);
+  --section-gap: 160px;
+
   /* Backgrounds */
-  --color-bg-primary: #05040e;
-  --color-bg-secondary: #0c0a1a;
-  --color-bg-tertiary: #130f24;
+  --color-bg-primary: #070912;
+  --color-bg-secondary: #0d1325;
+  --color-bg-tertiary: #151d35;
+  --color-surface-1: rgba(16, 25, 48, 0.72);
+  --color-surface-2: rgba(20, 31, 58, 0.88);
+  --color-surface-3: rgba(27, 39, 71, 0.86);
 
-  /* Accent base palette (unificada: violeta - cian - rosado) */
-  --color-accent-violet: #7c3aed; /* morado brillante */
-  --color-accent-cyan: #06b6d4;   /* cyan/teal */
-  --color-accent-pink: #fb7185;   /* rosa suave */
+  /* Accent palette */
+  --color-accent-violet: #8b5cf6;
+  --color-accent-cyan: #22d3ee;
+  --color-accent-pink: #f472b6;
   --color-accent-deep: #4c1d95;
+  --color-accent-red: #f472b6;
+  --color-accent-red-soft: #f9a8d4;
 
-  /* Theme roles (coherentes con la paleta) */
+  /* Theme roles */
   --color-accent-primary: var(--color-accent-violet);
   --color-accent-secondary: var(--color-accent-cyan);
   --color-accent-tertiary: var(--color-accent-pink);
   --color-accent-rose: var(--color-accent-pink);
+  --color-accent-muted: #a3b3d7;
 
   /* Gradients */
-  --gradient-primary: linear-gradient(135deg, var(--color-accent-violet) 0%, var(--color-accent-cyan) 50%, var(--color-accent-pink) 100%);
-  --gradient-nebula: linear-gradient(135deg, var(--color-accent-violet) 0%, var(--color-accent-cyan) 50%, var(--color-accent-pink) 100%);
-  --gradient-stellar: linear-gradient(135deg, var(--color-accent-cyan) 0%, var(--color-accent-violet) 100%);
-  --gradient-title: linear-gradient(135deg, var(--color-accent-pink) 0%, var(--color-accent-violet) 50%, var(--color-accent-cyan) 100%);
-  --gradient-aurora: linear-gradient(135deg, var(--color-accent-pink) 0%, var(--color-accent-violet) 50%, var(--color-accent-cyan) 100%);
+  --gradient-primary: linear-gradient(
+    135deg,
+    var(--color-accent-violet) 0%,
+    var(--color-accent-cyan) 52%,
+    var(--color-accent-pink) 100%
+  );
+  --gradient-nebula: linear-gradient(
+    130deg,
+    rgba(139, 92, 246, 0.92) 0%,
+    rgba(34, 211, 238, 0.84) 50%,
+    rgba(244, 114, 182, 0.84) 100%
+  );
+  --gradient-stellar: linear-gradient(
+    135deg,
+    var(--color-accent-cyan) 0%,
+    var(--color-accent-violet) 100%
+  );
+  --gradient-title: linear-gradient(
+    132deg,
+    #fbcfe8 0%,
+    #c4b5fd 50%,
+    #67e8f9 100%
+  );
+  --gradient-aurora: linear-gradient(
+    130deg,
+    rgba(244, 114, 182, 0.24) 0%,
+    rgba(139, 92, 246, 0.24) 50%,
+    rgba(34, 211, 238, 0.2) 100%
+  );
   --gradient-text: linear-gradient(90deg, var(--color-accent-violet), var(--color-accent-cyan), var(--color-accent-pink));
-  --gradient-glow: radial-gradient(circle at 50% 50%, rgba(124, 58, 237, 0.12), transparent 70%);
+  --gradient-glow: radial-gradient(
+    circle at 50% 50%,
+    rgba(139, 92, 246, 0.2),
+    transparent 65%
+  );
 
   /* Text */
-  --color-text-primary: #ede9fe;
-  --color-text-secondary: #a89cc8;
-  --color-text-tertiary: #5b5075;
+  --color-text-primary: #edf2ff;
+  --color-text-secondary: #bac7e6;
+  --color-text-tertiary: #8ea2c9;
 
   /* Glass */
-  --glass-bg: rgba(12, 10, 26, 0.75);
-  --glass-blur: blur(12px);
-  --glass-border-red: rgba(224, 92, 110, 0.2);
-  --glass-border-rose: rgba(192, 38, 211, 0.2);
-  --glass-border: var(--glass-border-red);
+  --glass-bg: var(--color-surface-1);
+  --glass-bg-strong: var(--color-surface-2);
+  --glass-blur: blur(14px);
+  --glass-border-red: rgba(244, 114, 182, 0.24);
+  --glass-border-rose: rgba(139, 92, 246, 0.24);
+  --glass-border: rgba(152, 177, 236, 0.24);
 
   /* Glow */
-  --glow-violet: rgba(124, 58, 237, 0.15);
-  --glow-rose: rgba(192, 38, 211, 0.12);
-  --glow-red: rgba(224, 92, 110, 0.12);
-  --glow-soft: rgba(167, 139, 250, 0.08);
-  --glow-violet-rgb: 124, 58, 237;
-  --glow-red-rgb: 224, 92, 110;
+  --glow-violet: rgba(139, 92, 246, 0.22);
+  --glow-rose: rgba(244, 114, 182, 0.2);
+  --glow-red: rgba(244, 114, 182, 0.2);
+  --glow-soft: rgba(167, 139, 250, 0.14);
+  --glow-violet-rgb: 139, 92, 246;
+  --glow-red-rgb: 244, 114, 182;
   --glow-violet-strong: rgba(var(--glow-violet-rgb), 0.5);
   --glow-violet-hot: rgba(var(--glow-violet-rgb), 0.7);
-  --glow-red-strong: rgba(var(--glow-red-rgb), 0.2);
+  --glow-red-strong: rgba(var(--glow-red-rgb), 0.24);
 
   /* Shadows */
-  --shadow-sm: 0 4px 6px -1px rgba(0, 0, 0, 0.4), 0 2px 4px -1px rgba(0, 0, 0, 0.3);
-  --shadow-md: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.4);
-  --shadow-lg: 0 24px 48px -8px rgba(0, 0, 0, 0.6), 0 8px 16px -4px rgba(0, 0, 0, 0.4);
-  --shadow-glow: 0 0 20px rgba(224, 92, 110, 0.25);
-  --shadow-glow-md: 0 0 40px rgba(224, 92, 110, 0.2);
-  --shadow-glow-red: 0 0 20px rgba(224, 92, 110, 0.25);
+  --shadow-sm: 0 8px 24px -18px rgba(0, 0, 0, 0.7);
+  --shadow-md: 0 24px 40px -26px rgba(0, 0, 0, 0.85);
+  --shadow-lg: 0 36px 70px -34px rgba(0, 0, 0, 0.9);
+  --shadow-glow: 0 16px 36px -20px rgba(var(--glow-red-rgb), 0.62);
+  --shadow-glow-md: 0 24px 56px -28px rgba(var(--glow-red-rgb), 0.52);
+  --shadow-glow-red: 0 20px 46px -22px rgba(var(--glow-red-rgb), 0.58);
 
   /* Fonts */
   --font-primary: 'Outfit', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-display: 'Outfit', 'Space Grotesk', sans-serif;
   --font-mono: 'DM Mono', 'Fira Code', monospace;
-
-  /* Spacing */
-  --section-spacing: 6rem;
-  --container-padding: 2rem;
-  --section-gap: 160px;
 
   /* Breakpoints */
   --breakpoint-sm: 640px;
@@ -74,7 +111,7 @@
 
   /* UI helpers */
   --overlay-strong: rgba(0, 0, 0, 0.7);
-  --overlay-sheen: rgba(255, 255, 255, 0.2);
+  --overlay-sheen: rgba(255, 255, 255, 0.14);
   --color-heart: var(--color-accent-red-soft);
   --radius-xs: 8px;
   --radius-sm: 12px;
@@ -83,7 +120,7 @@
   --radius-pill: 999px;
   --text-glow-soft: 0 0 8px rgba(var(--glow-red-rgb), 0.14);
   --text-glow-strong: 0 0 14px rgba(var(--glow-red-rgb), 0.24);
-  --focus-ring: 0 0 0 3px rgba(var(--glow-red-rgb), 0.28);
+  --focus-ring: 0 0 0 3px rgba(var(--glow-violet-rgb), 0.35);
   --btn-padding-y: 0.78rem;
   --btn-padding-x: 1.55rem;
   --section-title-size: clamp(2rem, 5vw, 2.8rem);

@@ -71,8 +71,10 @@ defineProps({
 .timeline-content {
     padding: 1.5rem;
     position: relative;
-    border: 1px solid var(--glass-border-red);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
+    background: var(--glass-bg-strong);
+    box-shadow: var(--shadow-sm);
 }
 
 .timeline-date {
@@ -115,7 +117,7 @@ defineProps({
 }
 
 .timeline-content li::before {
-    content: '▹';
+    content: '>';
     color: var(--color-accent-primary);
     margin-right: 0.5rem;
 }

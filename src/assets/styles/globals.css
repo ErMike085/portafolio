@@ -10,6 +10,7 @@
 html {
   scroll-behavior: smooth;
   font-size: 16px;
+  scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
 body {
@@ -21,6 +22,7 @@ body {
   position: relative;
   /* Evita que el contenido quede bajo el header fijo */
   padding-top: var(--header-height, 72px);
+  text-rendering: optimizeLegibility;
 }
 
 h1,
@@ -47,6 +49,17 @@ body::before {
   z-index: -1;
 }
 
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(circle at 8% 16%, rgba(var(--glow-violet-rgb), 0.16), transparent 36%),
+    radial-gradient(circle at 92% 82%, rgba(var(--glow-red-rgb), 0.14), transparent 36%);
+  pointer-events: none;
+  z-index: -1;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
@@ -69,18 +82,40 @@ section {
 .section-title {
   font-family: var(--font-display);
   font-size: var(--section-title-size);
+  display: block;
+  width: fit-content;
   text-align: center;
   line-height: 1.1;
-  margin-bottom: 3.25rem;
-  background: var(--gradient-title);
+  margin: 0 auto 3.25rem;
+  background: linear-gradient(
+    90deg,
+    #8b5cf6 0%,
+    #22d3ee 25%,
+    #f472b6 50%,
+    #22d3ee 75%,
+    #8b5cf6 100%
+  );
+  background-size: 300% 100%;
+  background-position: 0% 50%;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-shadow: var(--text-glow-soft);
+  will-change: background-position;
+  animation: titleGradientShift 8s linear infinite;
+}
+
+@keyframes titleGradientShift {
+  0% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 .panel {
-  background: var(--glass-bg);
+  background: var(--glass-bg-strong);
   backdrop-filter: var(--glass-blur);
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-md);
@@ -95,9 +130,18 @@ section {
   width: 100%;
   border: 1px solid var(--glass-border);
   border-radius: var(--radius-sm);
-  background: rgba(12, 10, 26, 0.6);
+  background: rgba(9, 13, 26, 0.62);
   color: var(--color-text-primary);
   transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+a {
+  color: inherit;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 .input-field:focus {
@@ -127,5 +171,11 @@ section {
 @media (max-width: 768px) {
   body {
     padding-top: var(--header-height-sm, 64px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

@@ -1,11 +1,15 @@
 <template>
     <div class="tech-chip" :class="{ 'is-interactive': interactive }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
-        <i :class="iconClass" v-if="icon"></i>
+        <img v-if="isSupabase" :src="supabaseIcon" alt="Supabase" class="chip-icon-image" />
+        <i :class="iconClass" v-else-if="icon"></i>
         <span>{{ name }}</span>
     </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import supabaseIcon from '@/assets/icons/supabase.svg';
+
 const props = defineProps({
     name: {
         type: String,
@@ -27,7 +31,8 @@ const props = defineProps({
 
 const emit = defineEmits(['hover']);
 
-const iconClass = `devicon-${props.icon}-plain`;
+const isSupabase = computed(() => props.icon === 'supabase');
+const iconClass = computed(() => (props.icon ? `devicon-${props.icon}-plain` : ''));
 
 const handleMouseEnter = () => {
     if (props.interactive) {
@@ -76,5 +81,11 @@ const handleMouseLeave = () => {
 .tech-chip i {
     font-size: 1.2rem;
     color: var(--color-accent-primary);
+}
+
+.chip-icon-image {
+    width: 1.2rem;
+    height: 1.2rem;
+    object-fit: contain;
 }
 </style>

@@ -26,7 +26,7 @@ const particlesConfig = {
             value: getCssVar('--color-accent-tertiary', '#7c3aed')
         },
         links: {
-            color: getCssVar('--color-accent-red', '#e05c6e'),
+            color: getCssVar('--color-accent-secondary', '#22d3ee'),
             distance: 150,
             enable: true,
             opacity: 0.2,
@@ -47,7 +47,7 @@ const particlesConfig = {
                 enable: true,
                 area: 800
             },
-            value: 80
+            value: 68
         },
         opacity: {
             value: 0.3,

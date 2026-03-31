@@ -58,10 +58,10 @@ const typedText = ref('');
 const isTyping = ref(true);
 
 const texts = [
-    'Fullstack Web Developer',
-    'Vue.js Specialist',
-    'Laravel Artisan',
-    'Problem Solver'
+    'Desarrollador Web Fullstack',
+    'Especialista en Vue.js y Laravel',
+    'Aficionado por los retos',
+    'Orquestador de soluciones'
 ];
 
 let currentIndex = 0;
@@ -155,7 +155,7 @@ onUnmounted(() => {
     padding: 0.5rem 1rem;
     background: var(--glass-bg);
     backdrop-filter: var(--glass-blur);
-    border: 1px solid var(--glass-border-red);
+    border: 1px solid var(--glass-border);
     border-radius: var(--radius-pill);
     font-size: 0.9rem;
     color: var(--color-accent-secondary);

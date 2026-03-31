@@ -87,3 +87,16 @@
 .hover-scale:hover {
   transform: scale(1.05);
 }
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-fadeInUp,
+  .animate-fadeInLeft,
+  .animate-fadeInRight,
+  .animate-glow,
+  .hover-glow,
+  .hover-scale {
+    animation: none !important;
+    transition: none !important;
+    transform: none !important;
+  }
+}

@@ -10,7 +10,7 @@
                         <a :href="'#' + item.id" @click.prevent="scrollTo(item.id)">{{ item.label }}</a>
                     </li>
                 </ul>
-                <button class="menu-toggle" @click="toggleMenu" aria-label="Menú">
+                <button class="menu-toggle" @click="toggleMenu" aria-label="Menu">
                     <span></span><span></span><span></span>
                 </button>
             </nav>
@@ -27,7 +27,7 @@ const logoText = ref('<Miguel Muñoz/>');
 
 const menuItems = ref([
     { id: 'home', label: 'Inicio' },
-    { id: 'about', label: 'Sobre mí' },
+    { id: 'about', label: 'Sobre mi' },
     { id: 'skills', label: 'Habilidades' },
     { id: 'projects', label: 'Proyectos' },
     { id: 'experience', label: 'Experiencia' },
@@ -67,16 +67,17 @@ onUnmounted(() => {
     width: 100%;
     z-index: 1000;
     padding: 1rem 0;
-    transition: all 0.3s ease;
-    background: transparent;
+    transition: background 0.3s ease, border-color 0.3s ease, padding 0.3s ease;
+    background: rgba(7, 9, 18, 0.25);
     border-bottom: 1px solid transparent;
 }
 
 .app-header.scrolled {
-    background: rgba(12, 10, 26, 0.9);
+    background: rgba(10, 16, 33, 0.88);
     backdrop-filter: var(--glass-blur);
-    border-bottom: 1px solid var(--glass-border-red);
+    border-bottom: 1px solid var(--glass-border);
     padding: 0.5rem 0;
+    box-shadow: var(--shadow-sm);
 }
 
 .nav {
@@ -91,10 +92,30 @@ onUnmounted(() => {
     font-weight: bold;
     color: var(--color-text-primary);
     text-decoration: none;
-    background: var(--gradient-primary);
+    background: linear-gradient(90deg,
+            #8b5cf6 0%,
+            #22d3ee 25%,
+            #f472b6 50%,
+            #22d3ee 75%,
+            #8b5cf6 100%);
+    background-size: 300% 100%;
+    background-position: 100% 50%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    text-shadow: var(--text-glow-soft);
+    animation: navLogoGradientShift 8s linear infinite;
+    will-change: background-position;
+}
+
+@keyframes navLogoGradientShift {
+    0% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
 }
 
 .nav-menu {
@@ -110,6 +131,13 @@ onUnmounted(() => {
     font-weight: 500;
     transition: color 0.3s ease;
     position: relative;
+}
+
+.nav-menu a:focus-visible {
+    outline: none;
+    color: var(--color-text-primary);
+    box-shadow: var(--focus-ring);
+    border-radius: 6px;
 }
 
 .nav-menu a::after {
@@ -141,6 +169,7 @@ onUnmounted(() => {
     border: none;
     cursor: pointer;
     padding: 0;
+    border-radius: 6px;
 }
 
 .menu-toggle span {
@@ -158,10 +187,10 @@ onUnmounted(() => {
 
     .nav-menu {
         position: fixed;
-        top: 70px;
+        top: var(--header-height-sm, 66px);
         left: 0;
         width: 100%;
-        background: var(--glass-bg);
+        background: rgba(10, 16, 33, 0.95);
         backdrop-filter: var(--glass-blur);
         border-radius: 0 0 var(--radius-md) var(--radius-md);
         flex-direction: column;
@@ -171,7 +200,7 @@ onUnmounted(() => {
         transform: translateY(-150%);
         opacity: 0;
         transition: all 0.3s ease;
-        border-bottom: 1px solid var(--glass-border-red);
+        border-bottom: 1px solid var(--glass-border);
     }
 
     .nav-menu.active {

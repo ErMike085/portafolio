@@ -28,7 +28,7 @@
 import { ref } from 'vue';
 import TechChip from './TechChip.vue';
 
-const props = defineProps({
+defineProps({
   project: {
     type: Object,
     required: true,
@@ -44,8 +44,8 @@ const isHovered = ref(false);
     transition: all 0.3s ease;
     display: flex;
     flex-direction: column;
-    border: 1px solid transparent;
-    background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(0,0,0,0.15));
+    border: 1px solid var(--glass-border);
+    background: linear-gradient(180deg, rgba(24, 37, 68, 0.72), rgba(11, 17, 35, 0.88));
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     box-shadow: var(--shadow-md);
@@ -57,6 +57,7 @@ const isHovered = ref(false);
 .project-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-glow-md);
+    border-color: rgba(207, 224, 255, 0.36);
 }
 
 .project-image {
@@ -107,16 +108,17 @@ const isHovered = ref(false);
     justify-content: center;
     width: 40px;
     height: 40px;
-    background: var(--color-accent-primary);
+    background: rgba(14, 22, 44, 0.82);
+    border: 1px solid rgba(206, 224, 255, 0.35);
     border-radius: var(--radius-pill);
-    color: white;
+    color: var(--color-text-primary);
     font-size: 1.2rem;
     transition: transform 0.3s ease;
 }
 
 .project-links a:hover {
     transform: scale(1.1);
-    background: var(--color-accent-secondary);
+    background: var(--gradient-nebula);
 }
 
 .project-info {
@@ -149,7 +151,7 @@ const isHovered = ref(false);
     color: white;
     font-weight: 700;
     text-shadow: 0 6px 18px rgba(0,0,0,0.6);
-    background: linear-gradient(90deg, rgba(124,58,237,0.14), rgba(6,182,212,0.06));
+    background: linear-gradient(90deg, rgba(11, 17, 35, 0.75), rgba(34, 211, 238, 0.2));
     padding: 0.35rem 0.6rem;
     border-radius: 8px;
     font-size: 1rem;

@@ -21,7 +21,6 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
 import ParticlesBackground from '@/components/layout/ParticlesBackground.vue';
 import AppHeader from '@/components/layout/AppHeader.vue';
 import HeroSection from '@/components/sections/HeroSection.vue';
@@ -33,11 +32,7 @@ import ContactSection from '@/components/sections/ContactSection.vue';
 import AppFooter from '@/components/layout/AppFooter.vue';
 import { useScrollAnimation } from '@/composables/useScrollAnimation';
 
-const { initScrollAnimation } = useScrollAnimation();
-
-onMounted(() => {
-    initScrollAnimation();
-});
+useScrollAnimation();
 </script>
 
 <style scoped>

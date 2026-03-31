@@ -81,6 +81,7 @@ const handleSubmit = async () => {
     display: grid;
     grid-template-columns: 1fr 1fr;
     gap: 4rem;
+    align-items: start;
 }
 
 .contact-info h3 {
@@ -127,11 +128,12 @@ const handleSubmit = async () => {
 }
 
 .contact-form {
-    background: var(--glass-bg);
+    background: var(--glass-bg-strong);
     backdrop-filter: var(--glass-blur);
     border: 1px solid var(--glass-border);
     border-radius: var(--radius-md);
     padding: 2rem;
+    box-shadow: var(--shadow-sm);
 }
 
 .form-group {
@@ -146,11 +148,11 @@ const handleSubmit = async () => {
     font-size: 1rem;
     color: var(--color-text-primary);
     background: transparent;
-    border: 1px solid var(--glass-border);
+    border: 1px solid rgba(168, 191, 241, 0.35);
     border-radius: var(--radius-sm);
     padding: 0.82rem 0.9rem;
     outline: none;
-    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    transition: border-color 0.25s ease, box-shadow 0.25s ease, background-color 0.25s ease;
 }
 
 .form-group textarea {
@@ -181,6 +183,7 @@ const handleSubmit = async () => {
 .form-group textarea:focus {
     border-color: var(--color-accent-primary);
     box-shadow: var(--focus-ring);
+    background-color: rgba(13, 20, 38, 0.75);
 }
 
 @media (max-width: 768px) {
