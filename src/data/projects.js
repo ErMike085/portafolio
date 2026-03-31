@@ -53,4 +53,52 @@ export const projectsData = [
     demo: '',
     featured: true,
   },
+  {
+    id: 2,
+    title: 'TaskFlow',
+    description:
+      'Desarrollo de una plataforma visual de gestion de tareas con tableros, listas y tarjetas arrastrables. Permite crear, editar y eliminar tableros, controlar permisos por rol, compartir tableros publicos y trabajar con una experiencia moderna y responsiva enfocada en productividad.',
+    image: '/images/projects/taskflow/taskflow-home.svg',
+    images: [
+      {
+        src: '/images/projects/taskflow/home.png',
+        zoom: 1.04,
+        position: '50% 34%',
+      },
+      {
+        src: '/images/projects/taskflow/demo-mode.png',
+        zoom: 1.18,
+        position: '50% 36%',
+      },
+      {
+        src: '/images/projects/taskflow/registered-mode.png',
+        zoom: 1.15,
+        position: '50% 34%',
+      },
+      {
+        src: '/images/projects/taskflow/dashboard.png',
+        zoom: 1.1,
+        position: '50% 28%',
+      },
+      {
+        src: '/images/projects/taskflow/dashboard-config.png',
+        zoom: 1.12,
+        position: '50% 30%',
+      },
+    ],
+    technologies: [
+      'Laravel 12',
+      'PHP 8.2',
+      'Vue 3',
+      'Composition API',
+      'Inertia.js',
+      'Tailwind CSS',
+      'MySQL',
+      'Laravel Sanctum',
+      'VueDraggable',
+    ],
+    github: null,
+    demo: '',
+    featured: true,
+  },
 ]

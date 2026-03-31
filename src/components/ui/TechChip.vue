@@ -10,6 +10,8 @@
 import { computed } from 'vue';
 import supabaseIcon from '@/assets/icons/supabase.svg';
 import inertiaIcon from '@/assets/icons/tech/inertia.svg';
+import inertiaSsrIcon from '@/assets/icons/tech/inertia-ssr.svg';
+import compositionApiIcon from '@/assets/icons/tech/composition-api.svg';
 import tailwindIcon from '@/assets/icons/tech/tailwindcss.svg';
 import dompdfIcon from '@/assets/icons/tech/dompdf.svg';
 import laravelExcelIcon from '@/assets/icons/tech/laravel-excel.svg';
@@ -17,6 +19,9 @@ import apexchartsIcon from '@/assets/icons/tech/apexcharts.svg';
 import sweetalert2Icon from '@/assets/icons/tech/sweetalert2.svg';
 import jwtIcon from '@/assets/icons/tech/jwt.svg';
 import stripeIcon from '@/assets/icons/tech/stripe.svg';
+import sanctumIcon from '@/assets/icons/tech/sanctum.svg';
+import vuedraggableIcon from '@/assets/icons/tech/vuedraggable.svg';
+import phpunitIcon from '@/assets/icons/tech/phpunit.svg';
 import websocketsIcon from '@/assets/icons/tech/websockets.svg';
 import chartjsIcon from '@/assets/icons/tech/chartjs.svg';
 
@@ -46,6 +51,8 @@ const normalizedIcon = computed(() => String(props.icon || '').toLowerCase().tri
 const iconAssetMap = {
     supabase: supabaseIcon,
     inertia: inertiaIcon,
+    'inertia-ssr': inertiaSsrIcon,
+    'composition-api': compositionApiIcon,
     tailwindcss: tailwindIcon,
     dompdf: dompdfIcon,
     'laravel-excel': laravelExcelIcon,
@@ -53,6 +60,9 @@ const iconAssetMap = {
     sweetalert2: sweetalert2Icon,
     jwt: jwtIcon,
     stripe: stripeIcon,
+    sanctum: sanctumIcon,
+    vuedraggable: vuedraggableIcon,
+    phpunit: phpunitIcon,
     websockets: websocketsIcon,
     chartjs: chartjsIcon,
 };
