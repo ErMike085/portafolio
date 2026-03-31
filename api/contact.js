@@ -1,4 +1,4 @@
-/* global process, module */
+/* global process */
 const rateLimitStore = new Map();
 
 const MAX_REQUESTS_PER_WINDOW = 5;
@@ -104,7 +104,7 @@ async function sendWithResend({ name, email, message, ip }) {
   }
 }
 
-module.exports = async function handler(req, res) {
+export default async function handler(req, res) {
   if (req.method !== 'POST') {
     return json(res, 405, { ok: false, message: 'Method not allowed' });
   }
