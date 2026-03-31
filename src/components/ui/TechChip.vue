@@ -1,7 +1,7 @@
 <template>
     <div class="tech-chip" :class="{ 'is-interactive': interactive }" @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
-        <img v-if="isSupabase" :src="supabaseIcon" alt="Supabase" class="chip-icon-image" />
-        <i :class="iconClass" v-else-if="icon"></i>
+        <img v-if="iconUrl" :src="iconUrl" :alt="name" class="chip-icon-image" />
+        <i v-else-if="iconClass" :class="iconClass"></i>
         <span>{{ name }}</span>
     </div>
 </template>
@@ -9,6 +9,16 @@
 <script setup>
 import { computed } from 'vue';
 import supabaseIcon from '@/assets/icons/supabase.svg';
+import inertiaIcon from '@/assets/icons/tech/inertia.svg';
+import tailwindIcon from '@/assets/icons/tech/tailwindcss.svg';
+import dompdfIcon from '@/assets/icons/tech/dompdf.svg';
+import laravelExcelIcon from '@/assets/icons/tech/laravel-excel.svg';
+import apexchartsIcon from '@/assets/icons/tech/apexcharts.svg';
+import sweetalert2Icon from '@/assets/icons/tech/sweetalert2.svg';
+import jwtIcon from '@/assets/icons/tech/jwt.svg';
+import stripeIcon from '@/assets/icons/tech/stripe.svg';
+import websocketsIcon from '@/assets/icons/tech/websockets.svg';
+import chartjsIcon from '@/assets/icons/tech/chartjs.svg';
 
 const props = defineProps({
     name: {
@@ -31,8 +41,34 @@ const props = defineProps({
 
 const emit = defineEmits(['hover']);
 
-const isSupabase = computed(() => props.icon === 'supabase');
-const iconClass = computed(() => (props.icon ? `devicon-${props.icon}-plain` : ''));
+const normalizedIcon = computed(() => String(props.icon || '').toLowerCase().trim());
+
+const iconAssetMap = {
+    supabase: supabaseIcon,
+    inertia: inertiaIcon,
+    tailwindcss: tailwindIcon,
+    dompdf: dompdfIcon,
+    'laravel-excel': laravelExcelIcon,
+    apexcharts: apexchartsIcon,
+    sweetalert2: sweetalert2Icon,
+    jwt: jwtIcon,
+    stripe: stripeIcon,
+    websockets: websocketsIcon,
+    chartjs: chartjsIcon,
+};
+
+const iconClassMap = {
+    vitejs: 'devicon-vitejs-plain',
+    mysql: 'devicon-mysql-plain',
+    javascript: 'devicon-javascript-plain',
+    php: 'devicon-php-plain',
+    laravel: 'devicon-laravel-plain',
+    vuejs: 'devicon-vuejs-plain',
+    postman: 'devicon-postman-plain',
+};
+
+const iconUrl = computed(() => iconAssetMap[normalizedIcon.value] || null);
+const iconClass = computed(() => iconClassMap[normalizedIcon.value] || null);
 
 const handleMouseEnter = () => {
     if (props.interactive) {
@@ -87,5 +123,6 @@ const handleMouseLeave = () => {
     width: 1.2rem;
     height: 1.2rem;
     object-fit: contain;
+    filter: drop-shadow(0 0 6px rgba(var(--glow-violet-rgb), 0.35));
 }
 </style>

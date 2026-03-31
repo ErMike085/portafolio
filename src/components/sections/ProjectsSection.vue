@@ -30,13 +30,23 @@ const projects = ref(projectsData);
 
 .projects-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(350px, 350px));
     gap: 2rem;
+    justify-content: center;
+    justify-items: center;
+    width: 100%;
 }
 
 @media (max-width: 768px) {
     .projects-grid {
         grid-template-columns: 1fr;
+        max-width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .section-title {
+        margin-bottom: 2rem;
     }
 }
 </style>
