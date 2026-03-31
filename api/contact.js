@@ -100,7 +100,25 @@ async function sendWithResend({ name, email, message, ip }) {
   });
 
   if (!response.ok) {
-    throw new Error('email_provider_error');
+    const rawBody = await response.text();
+    let parsedBody = null;
+
+    try {
+      parsedBody = JSON.parse(rawBody);
+    } catch {
+      parsedBody = { raw: rawBody };
+    }
+
+    const providerMessage =
+      parsedBody?.message ||
+      parsedBody?.error ||
+      parsedBody?.name ||
+      'Unknown provider error';
+
+    const error = new Error('email_provider_error');
+    error.providerStatus = response.status;
+    error.providerMessage = providerMessage;
+    throw error;
   }
 }
 
@@ -141,9 +159,35 @@ export default async function handler(req, res) {
     return json(res, 200, { ok: true });
   } catch (error) {
     const isConfigError = error instanceof Error && error.message === 'missing_email_configuration';
+    const providerStatus = error?.providerStatus || 0;
+    const providerMessage = error?.providerMessage || '';
+
+    if (!isConfigError) {
+      console.error('Resend error:', {
+        status: providerStatus,
+        message: providerMessage,
+      });
+    }
+
+    if (providerStatus === 401) {
+      return json(res, 502, {
+        ok: false,
+        message: 'Resend API key invalida o sin permisos',
+      });
+    }
+
+    if (providerStatus === 403) {
+      return json(res, 502, {
+        ok: false,
+        message: 'Resend rechazo el remitente. Verifica CONTACT_FROM_EMAIL y dominio',
+      });
+    }
+
     return json(res, isConfigError ? 500 : 502, {
       ok: false,
-      message: isConfigError ? 'Server email is not configured' : 'Email provider failed',
+      message: isConfigError
+        ? 'Server email is not configured'
+        : providerMessage || 'Email provider failed',
     });
   }
 }
