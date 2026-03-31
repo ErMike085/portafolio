@@ -1,4 +1,4 @@
-/* global process */
+/* global process, module */
 const rateLimitStore = new Map();
 
 const MAX_REQUESTS_PER_WINDOW = 5;
@@ -44,9 +44,11 @@ function isAllowedOrigin(req) {
     return true;
   }
 
+  const requestHost = req.headers.host ? `https://${req.headers.host}` : '';
   const allowList = [
     ...(process.env.ALLOWED_ORIGINS ? process.env.ALLOWED_ORIGINS.split(',').map((v) => v.trim()).filter(Boolean) : []),
     process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : '',
+    requestHost,
   ].filter(Boolean);
 
   if (allowList.length === 0) {
@@ -102,7 +104,7 @@ async function sendWithResend({ name, email, message, ip }) {
   }
 }
 
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
   if (req.method !== 'POST') {
     return json(res, 405, { ok: false, message: 'Method not allowed' });
   }

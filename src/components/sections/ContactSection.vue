@@ -70,7 +70,7 @@ import GradientButton from '../ui/GradientButton.vue';
 
 const CONTACT_ENDPOINT = import.meta.env.VITE_CONTACT_ENDPOINT || '/api/contact';
 const CONTACT_FALLBACK_ENDPOINT =
-    import.meta.env.VITE_CONTACT_FALLBACK_ENDPOINT || 'https://formsubmit.co/ajax/ermike085@gmail.com';
+    import.meta.env.VITE_CONTACT_FALLBACK_ENDPOINT || '';
 const MIN_SUBMIT_INTERVAL_MS = 30000;
 const MIN_FILL_TIME_MS = 1500;
 const NAME_MAX_LEN = 120;
@@ -228,6 +228,7 @@ const handleSubmit = async (event) => {
         }
 
         const shouldTryFallback =
+            isLocalhostRuntime() &&
             CONTACT_ENDPOINT.startsWith('/api/') &&
             isHttpsEndpoint(CONTACT_FALLBACK_ENDPOINT) &&
             (!response || !response.ok);
@@ -529,6 +530,5 @@ const handleSubmit = async (event) => {
     }
 }
 </style>
-
 
 
