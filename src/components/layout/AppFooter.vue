@@ -29,7 +29,7 @@ const currentYear = new Date().getFullYear();
 
 const links = ref([
     { text: 'GitHub', icon: 'devicon-github-original', url: 'https://github.com/ErMike085' },
-    { text: 'LinkedIn', icon: 'devicon-linkedin-plain', url: 'https://www.linkedin.com/in/miguel-angel-munoz-ortiz-8109931aa/' },
+    { text: 'LinkedIn', icon: 'devicon-linkedin-plain', url: 'https://www.linkedin.com/in/miguel-angel-muñoz-ortiz-8109931aa/' },
 ]);
 </script>
 

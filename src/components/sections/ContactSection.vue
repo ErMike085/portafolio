@@ -40,15 +40,8 @@
                             <textarea id="message" v-model="form.message" required placeholder=" " rows="5"></textarea>
                             <label for="message">Mensaje</label>
                         </div>
-                        <input
-                            v-model="form.website"
-                            type="text"
-                            name="website"
-                            tabindex="-1"
-                            autocomplete="off"
-                            class="hp-field"
-                            aria-hidden="true"
-                        />
+                        <input v-model="form.website" type="text" name="website" tabindex="-1" autocomplete="off" class="hp-field"
+                            aria-hidden="true" />
 
                         <p v-if="submitMessage" :class="['submit-message', submitState]">
                             {{ submitMessage }}
@@ -93,7 +86,7 @@ const burstActive = ref(false);
 
 const socials = ref([
     { name: 'GitHub', icon: 'devicon-github-original', url: 'https://github.com/ErMike085' },
-    { name: 'LinkedIn', icon: 'devicon-linkedin-plain', url: 'https://www.linkedin.com/in/miguel-angel-munoz-ortiz-8109931aa/' },
+    { name: 'LinkedIn', icon: 'devicon-linkedin-plain', url: 'https://www.linkedin.com/in/miguel-angel-muñoz-ortiz-8109931aa/' },
     { name: 'Email', icon: 'fas fa-envelope', url: 'mailto:ermike085@gmail.com' }
 ]);
 
@@ -276,12 +269,10 @@ const handleSubmit = async (event) => {
 .burst-flash {
     position: absolute;
     inset: 0;
-    background: radial-gradient(
-        circle at 50% 50%,
-        rgba(196, 181, 253, 0.26),
-        rgba(139, 92, 246, 0.1),
-        transparent 62%
-    );
+    background: radial-gradient(circle at 50% 50%,
+            rgba(196, 181, 253, 0.26),
+            rgba(139, 92, 246, 0.1),
+            transparent 62%);
     animation: burstFlash 0.75s ease-out forwards;
 }
 
@@ -337,18 +328,36 @@ const handleSubmit = async (event) => {
     animation: burstRay 1s ease-out forwards;
 }
 
-.ray-1 { transform: translate(-50%, -50%) rotate(0deg); }
-.ray-2 { transform: translate(-50%, -50%) rotate(60deg); }
-.ray-3 { transform: translate(-50%, -50%) rotate(120deg); }
-.ray-4 { transform: translate(-50%, -50%) rotate(180deg); }
-.ray-5 { transform: translate(-50%, -50%) rotate(240deg); }
-.ray-6 { transform: translate(-50%, -50%) rotate(300deg); }
+.ray-1 {
+    transform: translate(-50%, -50%) rotate(0deg);
+}
+
+.ray-2 {
+    transform: translate(-50%, -50%) rotate(60deg);
+}
+
+.ray-3 {
+    transform: translate(-50%, -50%) rotate(120deg);
+}
+
+.ray-4 {
+    transform: translate(-50%, -50%) rotate(180deg);
+}
+
+.ray-5 {
+    transform: translate(-50%, -50%) rotate(240deg);
+}
+
+.ray-6 {
+    transform: translate(-50%, -50%) rotate(300deg);
+}
 
 @keyframes burstCore {
     0% {
         opacity: 0.9;
         transform: translate(-50%, -50%) scale(0.35);
     }
+
     100% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(2.2);
@@ -360,6 +369,7 @@ const handleSubmit = async (event) => {
         opacity: 0.85;
         transform: translate(-50%, -50%) scale(0.3);
     }
+
     100% {
         opacity: 0;
         transform: translate(-50%, -50%) scale(1.75);
@@ -371,6 +381,7 @@ const handleSubmit = async (event) => {
         opacity: 0.85;
         height: 22px;
     }
+
     100% {
         opacity: 0;
         height: 112px;
@@ -381,6 +392,7 @@ const handleSubmit = async (event) => {
     0% {
         opacity: 0.8;
     }
+
     100% {
         opacity: 0;
     }
@@ -530,5 +542,3 @@ const handleSubmit = async (event) => {
     }
 }
 </style>
-
-
