@@ -59,8 +59,6 @@
                         <div class="modal-image-shell">
                             <img :src="activeImage.src" :alt="project.title" class="modal-image" />
                         </div>
-                        <button v-if="hasMultipleImages" type="button" class="modal-nav next" aria-label="Imagen siguiente"
-                            @click="nextSlide"></button>
                     </div>
                     <button v-if="hasMultipleImages" type="button" class="modal-nav next" aria-label="Imagen siguiente" @click="nextSlide"></button>
                 </div>
@@ -255,18 +253,12 @@ onUnmounted(() => {
     padding: 2rem;
 }
 
-.modal-chrome {
-    position: relative;
-    width: min(82vw, 1200px);
-    height: min(82vh, 820px);
-}
-
 .modal-frame {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 100%;
-    height: 100%;
+    width: min(82vw, 1200px);
+    height: min(82vh, 820px);
     position: relative;
     padding: 1.25rem;
     border-radius: 24px;
@@ -295,8 +287,8 @@ onUnmounted(() => {
 
 .modal-close {
     position: absolute;
-    top: -18px;
-    right: -18px;
+    top: calc(50% - min(41vh, 410px) - 1rem);
+    right: calc(50% - min(41vw, 600px) + 0.5rem);
     width: 46px;
     height: 46px;
     border-radius: 999px;
@@ -354,7 +346,7 @@ onUnmounted(() => {
     display: grid;
     place-items: center;
     transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    z-index: 8;
+    z-index: 3;
 }
 
 .modal-nav:hover {
@@ -364,11 +356,11 @@ onUnmounted(() => {
 }
 
 .modal-nav.prev {
-    left: -76px;
+    left: calc(50% - min(41vw, 600px) - 4.25rem);
 }
 
 .modal-nav.next {
-    right: -76px;
+    right: calc(50% - min(41vw, 600px) - 4.25rem);
 }
 
 .modal-nav::before {
@@ -641,26 +633,23 @@ onUnmounted(() => {
 }
 
 @media (max-width: 1024px) {
-    .modal-chrome {
+    .modal-frame {
         width: min(90vw, 1000px);
         height: min(78vh, 760px);
-    }
-
-    .modal-frame {
         padding: 1rem;
     }
 
     .modal-nav.prev {
-        left: -60px;
+        left: 0.25rem;
     }
 
     .modal-nav.next {
-        right: -60px;
+        right: 0.25rem;
     }
 
     .modal-close {
-        top: -16px;
-        right: -16px;
+        top: 0.75rem;
+        right: 0.75rem;
     }
 }
 
@@ -687,6 +676,8 @@ onUnmounted(() => {
     }
 
     .modal-frame {
+        width: min(94vw, 900px);
+        height: min(74vh, 680px);
         padding: 0.75rem;
         border-radius: 20px;
     }
@@ -701,16 +692,11 @@ onUnmounted(() => {
     }
 
     .modal-nav.prev {
-        left: 0.5rem;
+        left: 0.25rem;
     }
 
     .modal-nav.next {
-        right: 0.5rem;
-    }
-
-    .modal-close {
-        top: -16px;
-        right: -16px;
+        right: 0.25rem;
     }
 }
 
@@ -729,36 +715,20 @@ onUnmounted(() => {
         padding: 0.75rem;
     }
 
-    .modal-chrome {
+    .modal-frame {
         width: 96vw;
         height: 72vh;
-    }
-
-    .modal-frame {
         padding: 0.6rem;
-        border-radius: 18px;
     }
 
     .modal-close {
         width: 40px;
         height: 40px;
-        top: -14px;
-        right: -14px;
     }
 
     .modal-nav {
         width: 40px;
         height: 40px;
-        background: rgba(8, 12, 24, 0.92);
-        border-color: rgba(206, 224, 255, 0.34);
-    }
-
-    .modal-nav.prev {
-        left: 0.35rem;
-    }
-
-    .modal-nav.next {
-        right: 0.35rem;
     }
 
     .modal-image-shell {
