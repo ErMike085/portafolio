@@ -1,0 +1,11 @@
+<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="ciGradient" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#D8A1FF"/>
+      <stop offset="0.5" stop-color="#8A5CFF"/>
+      <stop offset="1" stop-color="#38D9FF"/>
+    </linearGradient>
+  </defs>
+  <path d="M35.5 10.5C38 15 36.5 19 33 22C30 24.5 27.5 27 27.5 31C27.5 35.5 31 38.5 35.5 39.5C41 40.8 45 37.5 46.5 33.5C48 29.2 47.2 24 45 20C50.5 25.5 53 31.5 52 38C50.7 46.8 42.5 54 32 54C20.5 54 12 45.5 12 34.5C12 24 18.8 16.3 28.5 12.5C31.8 11.2 34 10.6 35.5 10.5Z" fill="url(#ciGradient)"/>
+  <path d="M26 42C29 44 33 44.5 36 43.5C33.5 46.5 29.5 48 25.5 47.2C22.5 46.6 20.2 45 18.7 42.8C20.8 43.2 23.2 43 26 42Z" fill="#0E1224" opacity="0.18"/>
+</svg>

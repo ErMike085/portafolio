@@ -8,22 +8,7 @@
 
 <script setup>
 import { computed } from 'vue';
-import supabaseIcon from '@/assets/icons/supabase.svg';
-import inertiaIcon from '@/assets/icons/tech/inertia.svg';
-import inertiaSsrIcon from '@/assets/icons/tech/inertia-ssr.svg';
-import compositionApiIcon from '@/assets/icons/tech/composition-api.svg';
-import tailwindIcon from '@/assets/icons/tech/tailwindcss.svg';
-import dompdfIcon from '@/assets/icons/tech/dompdf.svg';
-import laravelExcelIcon from '@/assets/icons/tech/laravel-excel.svg';
-import apexchartsIcon from '@/assets/icons/tech/apexcharts.svg';
-import sweetalert2Icon from '@/assets/icons/tech/sweetalert2.svg';
-import jwtIcon from '@/assets/icons/tech/jwt.svg';
-import stripeIcon from '@/assets/icons/tech/stripe.svg';
-import sanctumIcon from '@/assets/icons/tech/sanctum.svg';
-import vuedraggableIcon from '@/assets/icons/tech/vuedraggable.svg';
-import phpunitIcon from '@/assets/icons/tech/phpunit.svg';
-import websocketsIcon from '@/assets/icons/tech/websockets.svg';
-import chartjsIcon from '@/assets/icons/tech/chartjs.svg';
+import { resolveTechIcon } from '@/utils/techIcons';
 
 const props = defineProps({
     name: {
@@ -46,39 +31,9 @@ const props = defineProps({
 
 const emit = defineEmits(['hover']);
 
-const normalizedIcon = computed(() => String(props.icon || '').toLowerCase().trim());
-
-const iconAssetMap = {
-    supabase: supabaseIcon,
-    inertia: inertiaIcon,
-    'inertia-ssr': inertiaSsrIcon,
-    'composition-api': compositionApiIcon,
-    tailwindcss: tailwindIcon,
-    dompdf: dompdfIcon,
-    'laravel-excel': laravelExcelIcon,
-    apexcharts: apexchartsIcon,
-    sweetalert2: sweetalert2Icon,
-    jwt: jwtIcon,
-    stripe: stripeIcon,
-    sanctum: sanctumIcon,
-    vuedraggable: vuedraggableIcon,
-    phpunit: phpunitIcon,
-    websockets: websocketsIcon,
-    chartjs: chartjsIcon,
-};
-
-const iconClassMap = {
-    vitejs: 'devicon-vitejs-plain',
-    mysql: 'devicon-mysql-plain',
-    javascript: 'devicon-javascript-plain',
-    php: 'devicon-php-plain',
-    laravel: 'devicon-laravel-plain',
-    vuejs: 'devicon-vuejs-plain',
-    postman: 'devicon-postman-plain',
-};
-
-const iconUrl = computed(() => iconAssetMap[normalizedIcon.value] || null);
-const iconClass = computed(() => iconClassMap[normalizedIcon.value] || null);
+const resolvedIcon = computed(() => resolveTechIcon(props.icon || props.name));
+const iconUrl = computed(() => (resolvedIcon.value?.type === 'asset' ? resolvedIcon.value.value : null));
+const iconClass = computed(() => (resolvedIcon.value?.type === 'class' ? resolvedIcon.value.value : null));
 
 const handleMouseEnter = () => {
     if (props.interactive) {

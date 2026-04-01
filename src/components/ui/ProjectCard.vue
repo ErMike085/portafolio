@@ -52,7 +52,7 @@
                     v-for="tech in project.technologies"
                     :key="tech"
                     :name="tech"
-                    :icon="getTechIcon(tech)"
+                    :icon="tech"
                     :interactive="false"
                 />
             </div>
@@ -91,7 +91,6 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, onUnmounted, ref, watch } from 'vue';
 import TechChip from './TechChip.vue';
-
 const props = defineProps({
   project: {
     type: Object,
@@ -103,33 +102,6 @@ const isHovered = ref(false);
 const currentSlide = ref(0);
 const isModalOpen = ref(false);
 let autoplayId = null;
-
-  const techIconMap = {
-    'php 8.2': 'php',
-    'laravel 12': 'laravel',
-    'vue 3': 'vuejs',
-    'inertia.js': 'inertia',
-    'inertia.js ssr': 'inertia-ssr',
-    vite: 'vitejs',
-    'tailwind css 4': 'tailwindcss',
-    'tailwind css': 'tailwindcss',
-    'composition api': 'composition-api',
-    dompdf: 'dompdf',
-    'laravel excel': 'laravel-excel',
-    'laravel sanctum': 'sanctum',
-    apexcharts: 'apexcharts',
-    sweetalert2: 'sweetalert2',
-    mysql: 'mysql',
-    'vue.js': 'vuejs',
-    vuedraggable: 'vuedraggable',
-    php: 'php',
-    phpunit: 'phpunit',
-    stripe: 'stripe',
-    jwt: 'jwt',
-    postman: 'postman',
-    websockets: 'websockets',
-    'chart.js': 'chartjs',
-};
 
 const images = computed(() =>
   (props.project.images?.length ? props.project.images : [props.project.image]).map((image) =>
@@ -150,8 +122,6 @@ const imageStyle = computed(() => ({
   '--image-hover-scale': Math.min(activeImage.value.zoom + 0.04, 1.42),
   objectPosition: activeImage.value.position,
 }));
-const getTechIcon = (tech) => techIconMap[String(tech).toLowerCase().trim()] ?? null;
-
 const goToSlide = (index) => {
   currentSlide.value = index;
 };

@@ -29,18 +29,27 @@ const projects = ref(projectsData);
 }
 
 .projects-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(350px, 350px));
-    gap: 2rem;
+    display: flex;
+    flex-wrap: wrap;
     justify-content: center;
-    justify-items: center;
+    align-items: stretch;
+    gap: 2rem;
     width: 100%;
+}
+
+.projects-grid :deep(.project-card) {
+    flex: 0 1 350px;
+    width: min(100%, 350px);
 }
 
 @media (max-width: 768px) {
     .projects-grid {
-        grid-template-columns: 1fr;
-        max-width: 100%;
+        gap: 1.5rem;
+    }
+
+    .projects-grid :deep(.project-card) {
+        flex-basis: 100%;
+        max-width: 420px;
     }
 }
 

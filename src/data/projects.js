@@ -1,4 +1,4 @@
-export const projectsData = [
+﻿export const projectsData = [
   {
     id: 1,
     title: 'POS Comercial Multisucursal',
@@ -99,6 +99,117 @@ export const projectsData = [
     ],
     github: null,
     demo: '',
+    featured: true,
+  },
+  {
+    id: 3,
+    title: "Adam's Discount Tires",
+    description:
+      'Aplicacion web para la gestion y venta de llantas, rines y servicios automotrices. Combina una interfaz publica para clientes con un panel interno para pedidos, inventario, usuarios, reportes y control operativo, centralizando procesos comerciales y mejorando la atencion al cliente.',
+    image: '/images/projects/adams/home.png',
+    images: [
+      {
+        src: '/images/projects/adams/home.png',
+        zoom: 1.06,
+        position: '50% 28%',
+      },
+      {
+        src: '/images/projects/adams/products.png',
+        zoom: 1.14,
+        position: '50% 24%',
+      },
+      {
+        src: '/images/projects/adams/services.png',
+        zoom: 1.1,
+        position: '50% 24%',
+      },
+      {
+        src: '/images/projects/adams/orders.png',
+        zoom: 1.12,
+        position: '50% 24%',
+      },
+      {
+        src: '/images/projects/adams/inventory-logs.png',
+        zoom: 1.16,
+        position: '50% 26%',
+      },
+      {
+        src: '/images/projects/adams/customers.png',
+        zoom: 1.1,
+        position: '50% 22%',
+      },
+    ],
+    technologies: [
+      'Vue 3',
+      'JavaScript',
+      'Sass',
+      'SweetAlert2',
+      'Swiper',
+      'Font Awesome',
+      'Netlify',
+      'dotenv',
+    ],
+    github: null,
+    demo: 'https://adamtires.com',
+    featured: true,
+  },
+  {
+    id: 4,
+    title: 'Touris World',
+    description:
+      'Plataforma integral para la gestión y reserva de alojamientos y experiencias turísticas, desarrollada con Laravel y Vue.js utilizando Inertia. Permite la administración completa de hoteles, habitaciones, tipologías, reservas, usuarios y experiencias, así como la gestión de pagos y reseñas. Incluye flujos optimizados de checkout, confirmaciones y un sistema de notificaciones automatizadas, garantizando una experiencia eficiente tanto para usuarios como para administradores.',
+    image: '/images/projects/touris/home-hotels.png',
+    images: [
+      {
+        src: '/images/projects/touris/home-hotels.png',
+        zoom: 1.05,
+        position: '50% 22%',
+      },
+      {
+        src: '/images/projects/touris/home-activities.png',
+        zoom: 1.05,
+        position: '50% 22%',
+      },
+      {
+        src: '/images/projects/touris/hotel-info.png',
+        zoom: 1.08,
+        position: '50% 22%',
+      },
+      {
+        src: '/images/projects/touris/checkout.png',
+        zoom: 1.12,
+        position: '50% 26%',
+      },
+      {
+        src: '/images/projects/touris/hotel-dashboard.png',
+        zoom: 1.08,
+        position: '50% 24%',
+      },
+      {
+        src: '/images/projects/touris/rooms.png',
+        zoom: 1.08,
+        position: '50% 22%',
+      },
+    ],
+    technologies: [
+      'PHP 8.3',
+      'Laravel 12',
+      'Vue 3',
+      'Inertia.js',
+      'Tailwind CSS',
+      'Spatie Permission',
+      'Filament',
+      'Wompi',
+      'AWS S3',
+      'Intervention Image',
+      'Spatie Image Optimizer',
+      'Ziggy',
+      'Predis',
+      'Pest',
+      'Pint',
+    ],
+    github: null,
+    demo: 'https://touris.world',
     featured: true,
   },
 ]
