@@ -9,7 +9,7 @@
                 <li v-for="achievement in experience.achievements" :key="achievement">{{ achievement }}</li>
             </ul>
             <div class="timeline-tech">
-                <TechChip v-for="tech in experience.technologies" :key="tech" :name="tech" :icon="tech.toLowerCase()" :interactive="false" />
+                <TechChip v-for="tech in experience.technologies" :key="tech" :name="tech" :icon="tech" :interactive="false" />
             </div>
         </div>
     </div>

@@ -8,8 +8,8 @@
                     <div class="skills-list">
                         <div v-for="skill in category" :key="skill.name" class="skill-item">
                             <div class="skill-info">
-                                <img v-if="isSupabase(skill.icon)" :src="supabaseIcon" alt="Supabase" class="skill-icon-image" />
-                                <i v-else :class="`devicon-${skill.icon}-plain`"></i>
+                                <img v-if="resolvedSkillIcon(skill)?.type === 'asset'" :src="resolvedSkillIcon(skill).value" :alt="skill.name" class="skill-icon-image" />
+                                <i v-else-if="resolvedSkillIcon(skill)?.type === 'class'" :class="resolvedSkillIcon(skill).value"></i>
                                 <span>{{ skill.name }}</span>
                             </div>
                             <div class="skill-bar">
@@ -26,7 +26,7 @@
 <script setup>
 import { computed } from 'vue';
 import { skillsData } from '@/data/skills';
-import supabaseIcon from '@/assets/icons/supabase.svg';
+import { resolveTechIcon } from '@/utils/techIcons';
 
 const skillCategories = computed(() => Object.entries(skillsData));
 
@@ -40,7 +40,7 @@ const categoryTitle = (key) => {
     return titles[key] || key;
 };
 
-const isSupabase = (icon) => icon === 'supabase';
+const resolvedSkillIcon = (skill) => resolveTechIcon(skill.icon || skill.name);
 </script>
 
 <style scoped>

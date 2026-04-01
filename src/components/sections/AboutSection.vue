@@ -47,17 +47,6 @@ const values = ref([
     overflow: hidden;
 }
 
-.about-section::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: -50%;
-    width: 200%;
-    height: 200%;
-    background: radial-gradient(circle, var(--glow-soft) 0%, transparent 70%);
-    animation: rotateGradient 30s linear infinite;
-}
-
 .section-title {
     font-size: var(--section-title-size);
     margin-bottom: 3.25rem;
@@ -189,6 +178,22 @@ const values = ref([
     .image-wrapper {
         width: 250px;
         height: 300px;
+    }
+}
+
+@media (max-width: 480px) {
+    .about-content {
+        gap: 1.5rem;
+    }
+
+    .values {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .image-wrapper {
+        width: min(100%, 250px);
+        height: 280px;
     }
 }
 </style>

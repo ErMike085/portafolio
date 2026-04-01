@@ -1,10 +1,12 @@
 <template>
     <div class="particles-container">
-        <vue-particles id="tsparticles" :options="particlesConfig" />
+        <vue-particles :key="particlesKey" id="tsparticles" :options="particlesConfig" />
     </div>
 </template>
 
 <script setup>
+import { computed, onMounted, onUnmounted, ref } from 'vue';
+
 const getCssVar = (name, fallback) => {
     if (typeof window === 'undefined') {
         return fallback;
@@ -14,27 +16,51 @@ const getCssVar = (name, fallback) => {
     return value || fallback;
 };
 
-const particlesConfig = {
+const viewportMode = ref('desktop');
+const particlesKey = ref(0);
+
+const resolveViewportMode = () => {
+    const width = window.innerWidth;
+
+    if (width <= 480) {
+        return 'mobile';
+    }
+
+    if (width <= 1024) {
+        return 'tablet';
+    }
+
+    return 'desktop';
+};
+
+const particlesConfig = computed(() => {
+    const mode = viewportMode.value;
+    const isMobile = mode === 'mobile';
+    const isTablet = mode === 'tablet';
+    const accentColor = getCssVar('--color-accent-tertiary', '#7c3aed');
+    const linkColor = getCssVar('--color-accent-secondary', '#22d3ee');
+
+    return {
     background: {
         color: {
             value: 'transparent'
         }
     },
-    fpsLimit: 60,
+    fpsLimit: isMobile ? 30 : isTablet ? 45 : 60,
     particles: {
         color: {
-            value: getCssVar('--color-accent-tertiary', '#7c3aed')
+            value: accentColor
         },
         links: {
-            color: getCssVar('--color-accent-secondary', '#22d3ee'),
-            distance: 150,
-            enable: true,
-            opacity: 0.2,
+            color: linkColor,
+            distance: isMobile ? 90 : isTablet ? 120 : 150,
+            enable: !isMobile,
+            opacity: isMobile ? 0 : isTablet ? 0.14 : 0.2,
             width: 1
         },
         move: {
             enable: true,
-            speed: 1,
+            speed: isMobile ? 0.45 : isTablet ? 0.7 : 1,
             direction: 'none',
             random: true,
             straight: false,
@@ -45,26 +71,26 @@ const particlesConfig = {
         number: {
             density: {
                 enable: true,
-                area: 800
+                area: isMobile ? 1400 : isTablet ? 1000 : 800
             },
-            value: 68
+            value: isMobile ? 16 : isTablet ? 34 : 68
         },
         opacity: {
-            value: 0.3,
+            value: isMobile ? 0.18 : 0.3,
             random: true,
             animation: {
-                enable: true,
-                speed: 0.5,
+                enable: !isMobile,
+                speed: isMobile ? 0 : 0.5,
                 minimumValue: 0.1,
                 sync: false
             }
         },
         size: {
-            value: 2,
+            value: isMobile ? 2.5 : 2,
             random: true,
             animation: {
-                enable: true,
-                speed: 2,
+                enable: !isMobile,
+                speed: isMobile ? 0 : 2,
                 minimumValue: 0.5,
                 sync: false
             }
@@ -73,27 +99,60 @@ const particlesConfig = {
     interactivity: {
         events: {
             onHover: {
-                enable: true,
+                enable: !isMobile,
                 mode: 'grab'
             },
             onClick: {
-                enable: true,
+                enable: !isMobile,
                 mode: 'push'
             }
         },
         modes: {
             grab: {
-                distance: 140,
+                distance: isMobile ? 0 : 140,
                 links: {
                     opacity: 0.5
                 }
             },
             push: {
-                quantity: 2
+                quantity: isMobile ? 0 : 2
             }
         }
     }
+    };
+});
+
+let resizeTimer = null;
+
+const syncViewportMode = () => {
+    const nextMode = resolveViewportMode();
+
+    if (nextMode !== viewportMode.value) {
+        viewportMode.value = nextMode;
+        particlesKey.value += 1;
+    }
 };
+
+const handleResize = () => {
+    if (resizeTimer) {
+        window.clearTimeout(resizeTimer);
+    }
+
+    resizeTimer = window.setTimeout(syncViewportMode, 150);
+};
+
+onMounted(() => {
+    syncViewportMode();
+    window.addEventListener('resize', handleResize, { passive: true });
+});
+
+onUnmounted(() => {
+    if (resizeTimer) {
+        window.clearTimeout(resizeTimer);
+    }
+
+    window.removeEventListener('resize', handleResize);
+});
 </script>
 
 <style scoped>

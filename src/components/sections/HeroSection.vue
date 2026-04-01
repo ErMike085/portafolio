@@ -133,7 +133,6 @@ onUnmounted(() => {
     width: 200%;
     height: 200%;
     background: radial-gradient(circle, var(--glow-violet) 0%, transparent 50%);
-    animation: rotateGradient 20s linear infinite;
 }
 
 .hero-content {

@@ -52,7 +52,7 @@
                     v-for="tech in project.technologies"
                     :key="tech"
                     :name="tech"
-                    :icon="getTechIcon(tech)"
+                    :icon="tech"
                     :interactive="false"
                 />
             </div>
@@ -60,28 +60,30 @@
         <Teleport to="body">
             <Transition name="modal">
                 <div v-if="isModalOpen" class="project-modal" @click.self="closeModal">
-                    <button type="button" class="modal-close" aria-label="Cerrar imagen" @click="closeModal">
-                        <span />
-                    </button>
-                    <button
-                        v-if="hasMultipleImages"
-                        type="button"
-                        class="modal-nav prev"
-                        aria-label="Imagen anterior"
-                        @click="prevSlide"
-                    ></button>
-                    <div class="modal-frame">
-                        <div class="modal-image-shell">
-                            <img :src="activeImage.src" :alt="project.title" class="modal-image" />
+                    <div class="modal-chrome">
+                        <button type="button" class="modal-close" aria-label="Cerrar imagen" @click="closeModal">
+                            <span />
+                        </button>
+                        <button
+                            v-if="hasMultipleImages"
+                            type="button"
+                            class="modal-nav prev"
+                            aria-label="Imagen anterior"
+                            @click="prevSlide"
+                        ></button>
+                        <div class="modal-frame">
+                            <div class="modal-image-shell">
+                                <img :src="activeImage.src" :alt="project.title" class="modal-image" />
+                            </div>
                         </div>
+                        <button
+                            v-if="hasMultipleImages"
+                            type="button"
+                            class="modal-nav next"
+                            aria-label="Imagen siguiente"
+                            @click="nextSlide"
+                        ></button>
                     </div>
-                    <button
-                        v-if="hasMultipleImages"
-                        type="button"
-                        class="modal-nav next"
-                        aria-label="Imagen siguiente"
-                        @click="nextSlide"
-                    ></button>
                 </div>
             </Transition>
         </Teleport>
@@ -104,33 +106,6 @@ const currentSlide = ref(0);
 const isModalOpen = ref(false);
 let autoplayId = null;
 
-  const techIconMap = {
-    'php 8.2': 'php',
-    'laravel 12': 'laravel',
-    'vue 3': 'vuejs',
-    'inertia.js': 'inertia',
-    'inertia.js ssr': 'inertia-ssr',
-    vite: 'vitejs',
-    'tailwind css 4': 'tailwindcss',
-    'tailwind css': 'tailwindcss',
-    'composition api': 'composition-api',
-    dompdf: 'dompdf',
-    'laravel excel': 'laravel-excel',
-    'laravel sanctum': 'sanctum',
-    apexcharts: 'apexcharts',
-    sweetalert2: 'sweetalert2',
-    mysql: 'mysql',
-    'vue.js': 'vuejs',
-    vuedraggable: 'vuedraggable',
-    php: 'php',
-    phpunit: 'phpunit',
-    stripe: 'stripe',
-    jwt: 'jwt',
-    postman: 'postman',
-    websockets: 'websockets',
-    'chart.js': 'chartjs',
-};
-
 const images = computed(() =>
   (props.project.images?.length ? props.project.images : [props.project.image]).map((image) =>
     typeof image === 'string'
@@ -150,7 +125,6 @@ const imageStyle = computed(() => ({
   '--image-hover-scale': Math.min(activeImage.value.zoom + 0.04, 1.42),
   objectPosition: activeImage.value.position,
 }));
-const getTechIcon = (tech) => techIconMap[String(tech).toLowerCase().trim()] ?? null;
 
 const goToSlide = (index) => {
   currentSlide.value = index;
@@ -295,12 +269,18 @@ onUnmounted(() => {
     padding: 2rem;
 }
 
+.modal-chrome {
+    position: relative;
+    width: min(82vw, 1200px);
+    height: min(82vh, 820px);
+}
+
 .modal-frame {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: min(82vw, 1200px);
-    height: min(82vh, 820px);
+    width: 100%;
+    height: 100%;
     position: relative;
     padding: 1.25rem;
     border-radius: 24px;
@@ -329,8 +309,8 @@ onUnmounted(() => {
 
 .modal-close {
     position: absolute;
-    top: calc(50% - min(41vh, 410px) - 1rem);
-    right: calc(50% - min(41vw, 600px) + 0.5rem);
+    top: -18px;
+    right: -18px;
     width: 46px;
     height: 46px;
     border-radius: 999px;
@@ -388,7 +368,7 @@ onUnmounted(() => {
     display: grid;
     place-items: center;
     transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
-    z-index: 3;
+    z-index: 8;
 }
 
 .modal-nav:hover {
@@ -398,11 +378,11 @@ onUnmounted(() => {
 }
 
 .modal-nav.prev {
-    left: calc(50% - min(41vw, 600px) - 4.25rem);
+    left: -76px;
 }
 
 .modal-nav.next {
-    right: calc(50% - min(41vw, 600px) - 4.25rem);
+    right: -76px;
 }
 
 .modal-nav::before {
@@ -636,23 +616,26 @@ onUnmounted(() => {
 }
 
 @media (max-width: 1024px) {
-    .modal-frame {
+    .modal-chrome {
         width: min(90vw, 1000px);
         height: min(78vh, 760px);
+    }
+
+    .modal-frame {
         padding: 1rem;
     }
 
     .modal-nav.prev {
-        left: 0.25rem;
+        left: -60px;
     }
 
     .modal-nav.next {
-        right: 0.25rem;
+        right: -60px;
     }
 
     .modal-close {
-        top: 0.75rem;
-        right: 0.75rem;
+        top: -16px;
+        right: -16px;
     }
 }
 
@@ -679,8 +662,6 @@ onUnmounted(() => {
     }
 
     .modal-frame {
-        width: min(94vw, 900px);
-        height: min(74vh, 680px);
         padding: 0.75rem;
         border-radius: 20px;
     }
@@ -695,11 +676,16 @@ onUnmounted(() => {
     }
 
     .modal-nav.prev {
-        left: 0.25rem;
+        left: 0.5rem;
     }
 
     .modal-nav.next {
-        right: 0.25rem;
+        right: 0.5rem;
+    }
+
+    .modal-close {
+        top: -16px;
+        right: -16px;
     }
 }
 
@@ -718,20 +704,36 @@ onUnmounted(() => {
         padding: 0.75rem;
     }
 
-    .modal-frame {
+    .modal-chrome {
         width: 96vw;
         height: 72vh;
+    }
+
+    .modal-frame {
         padding: 0.6rem;
+        border-radius: 18px;
     }
 
     .modal-close {
         width: 40px;
         height: 40px;
+        top: -14px;
+        right: -14px;
     }
 
     .modal-nav {
         width: 40px;
         height: 40px;
+        background: rgba(8, 12, 24, 0.92);
+        border-color: rgba(206, 224, 255, 0.34);
+    }
+
+    .modal-nav.prev {
+        left: 0.35rem;
+    }
+
+    .modal-nav.next {
+        right: 0.35rem;
     }
 
     .modal-image-shell {
