@@ -31,8 +31,7 @@ const props = defineProps({
 
 const emit = defineEmits(['hover']);
 
-const iconKey = computed(() => props.icon || props.name);
-const resolvedIcon = computed(() => resolveTechIcon(iconKey.value));
+const resolvedIcon = computed(() => resolveTechIcon(props.icon || props.name));
 const iconUrl = computed(() => (resolvedIcon.value?.type === 'asset' ? resolvedIcon.value.value : null));
 const iconClass = computed(() => (resolvedIcon.value?.type === 'class' ? resolvedIcon.value.value : null));
 

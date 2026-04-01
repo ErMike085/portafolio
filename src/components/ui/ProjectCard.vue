@@ -1,12 +1,7 @@
 ﻿<template>
     <div class="project-card glass" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <div class="project-image" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
-            <button
-                type="button"
-                class="image-trigger"
-                :aria-label="`Abrir imagen de ${project.title}`"
-                @click="openModal"
-            >
+            <button type="button" class="image-trigger" :aria-label="`Abrir imagen de ${project.title}`" @click="openModal">
                 <img :src="activeImage.src" :alt="project.title" :style="imageStyle" />
             </button>
             <div v-if="hasMultipleImages" class="carousel-controls">
@@ -14,14 +9,8 @@
                 <button type="button" class="carousel-button next" aria-label="Imagen siguiente" @click="nextSlide"></button>
             </div>
             <div v-if="hasMultipleImages" class="carousel-dots" aria-hidden="true">
-                <button
-                    v-for="(image, index) in images"
-                    :key="image.src + index"
-                    type="button"
-                    class="carousel-dot"
-                    :class="{ active: index === currentSlide }"
-                    @click="goToSlide(index)"
-                ></button>
+                <button v-for="(image, index) in images" :key="image.src + index" type="button" class="carousel-dot"
+                    :class="{ active: index === currentSlide }" @click="goToSlide(index)"></button>
             </div>
             <div class="project-image-title">{{ project.title }}</div>
             <div class="image-overlay" :class="{ hovered: isHovered }">
@@ -48,13 +37,7 @@
             <h3>{{ project.title }}</h3>
             <p>{{ project.description }}</p>
             <div class="project-tech">
-                <TechChip
-                    v-for="tech in project.technologies"
-                    :key="tech"
-                    :name="tech"
-                    :icon="tech"
-                    :interactive="false"
-                />
+                <TechChip v-for="tech in project.technologies" :key="tech" :name="tech" :icon="tech" :interactive="false" />
             </div>
         </div>
         <Teleport to="body">
@@ -64,25 +47,15 @@
                         <button type="button" class="modal-close" aria-label="Cerrar imagen" @click="closeModal">
                             <span />
                         </button>
-                        <button
-                            v-if="hasMultipleImages"
-                            type="button"
-                            class="modal-nav prev"
-                            aria-label="Imagen anterior"
-                            @click="prevSlide"
-                        ></button>
+                        <button v-if="hasMultipleImages" type="button" class="modal-nav prev" aria-label="Imagen anterior"
+                            @click="prevSlide"></button>
                         <div class="modal-frame">
                             <div class="modal-image-shell">
                                 <img :src="activeImage.src" :alt="project.title" class="modal-image" />
                             </div>
                         </div>
-                        <button
-                            v-if="hasMultipleImages"
-                            type="button"
-                            class="modal-nav next"
-                            aria-label="Imagen siguiente"
-                            @click="nextSlide"
-                        ></button>
+                        <button v-if="hasMultipleImages" type="button" class="modal-nav next" aria-label="Imagen siguiente"
+                            @click="nextSlide"></button>
                     </div>
                 </div>
             </Transition>
@@ -93,12 +66,11 @@
 <script setup>
 import { computed, onBeforeUnmount, onMounted, onUnmounted, ref, watch } from 'vue';
 import TechChip from './TechChip.vue';
-
 const props = defineProps({
-  project: {
-    type: Object,
-    required: true,
-  },
+    project: {
+        type: Object,
+        required: true,
+    },
 });
 
 const isHovered = ref(false);
@@ -107,104 +79,103 @@ const isModalOpen = ref(false);
 let autoplayId = null;
 
 const images = computed(() =>
-  (props.project.images?.length ? props.project.images : [props.project.image]).map((image) =>
-    typeof image === 'string'
-      ? { src: image, zoom: 1, position: '50% 50%' }
-      : {
-          src: image.src,
-          zoom: Number.isFinite(Number(image.zoom)) ? Number(image.zoom) : 1,
-          position: image.position || '50% 50%',
-        },
-  ),
+    (props.project.images?.length ? props.project.images : [props.project.image]).map((image) =>
+        typeof image === 'string'
+            ? { src: image, zoom: 1, position: '50% 50%' }
+            : {
+                src: image.src,
+                zoom: Number.isFinite(Number(image.zoom)) ? Number(image.zoom) : 1,
+                position: image.position || '50% 50%',
+            },
+    ),
 );
 const hasMultipleImages = computed(() => images.value.length > 1);
 const hasLinks = computed(() => Boolean(props.project.github || props.project.demo));
 const activeImage = computed(() => images.value[currentSlide.value] || { src: props.project.image, zoom: 1, position: '50% 50%' });
 const imageStyle = computed(() => ({
-  '--image-scale': activeImage.value.zoom,
-  '--image-hover-scale': Math.min(activeImage.value.zoom + 0.04, 1.42),
-  objectPosition: activeImage.value.position,
+    '--image-scale': activeImage.value.zoom,
+    '--image-hover-scale': Math.min(activeImage.value.zoom + 0.04, 1.42),
+    objectPosition: activeImage.value.position,
 }));
-
 const goToSlide = (index) => {
-  currentSlide.value = index;
+    currentSlide.value = index;
 };
 
 const openModal = () => {
-  isModalOpen.value = true;
-  stopAutoplay();
+    isModalOpen.value = true;
+    stopAutoplay();
 };
 
 const closeModal = () => {
-  isModalOpen.value = false;
-  resumeAutoplay();
+    isModalOpen.value = false;
+    resumeAutoplay();
 };
 
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % images.value.length;
+    currentSlide.value = (currentSlide.value + 1) % images.value.length;
 };
 
 const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length;
+    currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length;
 };
 
 const startAutoplay = () => {
-  if (!hasMultipleImages.value || autoplayId || isModalOpen.value) {
-    return;
-  }
+    if (!hasMultipleImages.value || autoplayId || isModalOpen.value) {
+        return;
+    }
 
-  autoplayId = window.setInterval(nextSlide, 4500);
+    autoplayId = window.setInterval(nextSlide, 4500);
 };
 
 const stopAutoplay = () => {
-  if (autoplayId) {
-    window.clearInterval(autoplayId);
-    autoplayId = null;
-  }
+    if (autoplayId) {
+        window.clearInterval(autoplayId);
+        autoplayId = null;
+    }
 };
 
 const pauseAutoplay = () => stopAutoplay();
 const resumeAutoplay = () => {
-  if (!isModalOpen.value) {
-    startAutoplay();
-  }
+    if (!isModalOpen.value) {
+        startAutoplay();
+    }
 };
 
 const handleKeydown = (event) => {
-  if (!isModalOpen.value) {
-    return;
-  }
+    if (!isModalOpen.value) {
+        return;
+    }
 
-  if (event.key === 'Escape') {
-    closeModal();
-  }
+    if (event.key === 'Escape') {
+        closeModal();
+    }
 
-  if (event.key === 'ArrowLeft' && hasMultipleImages.value) {
-    prevSlide();
-  }
+    if (event.key === 'ArrowLeft' && hasMultipleImages.value) {
+        prevSlide();
+    }
 
-  if (event.key === 'ArrowRight' && hasMultipleImages.value) {
-    nextSlide();
-  }
+    if (event.key === 'ArrowRight' && hasMultipleImages.value) {
+        nextSlide();
+    }
 };
 
 watch(isModalOpen, (open) => {
-  document.body.style.overflow = open ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
 });
 
 onMounted(() => {
-  window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('keydown', handleKeydown);
 });
 
 startAutoplay();
 
 onBeforeUnmount(() => {
-  stopAutoplay();
+    stopAutoplay();
 });
 
 onUnmounted(() => {
-  window.removeEventListener('keydown', handleKeydown);
-  document.body.style.overflow = '';
+    window.removeEventListener('keydown', handleKeydown);
+    document.body.style.overflow = '';
 });
 </script>
 
