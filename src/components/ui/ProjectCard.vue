@@ -1,12 +1,7 @@
 ﻿<template>
     <div class="project-card glass" @mouseenter="isHovered = true" @mouseleave="isHovered = false">
         <div class="project-image" @mouseenter="pauseAutoplay" @mouseleave="resumeAutoplay">
-            <button
-                type="button"
-                class="image-trigger"
-                :aria-label="`Abrir imagen de ${project.title}`"
-                @click="openModal"
-            >
+            <button type="button" class="image-trigger" :aria-label="`Abrir imagen de ${project.title}`" @click="openModal">
                 <img :src="activeImage.src" :alt="project.title" :style="imageStyle" />
             </button>
             <div v-if="hasMultipleImages" class="carousel-controls">
@@ -14,14 +9,8 @@
                 <button type="button" class="carousel-button next" aria-label="Imagen siguiente" @click="nextSlide"></button>
             </div>
             <div v-if="hasMultipleImages" class="carousel-dots" aria-hidden="true">
-                <button
-                    v-for="(image, index) in images"
-                    :key="image.src + index"
-                    type="button"
-                    class="carousel-dot"
-                    :class="{ active: index === currentSlide }"
-                    @click="goToSlide(index)"
-                ></button>
+                <button v-for="(image, index) in images" :key="image.src + index" type="button" class="carousel-dot"
+                    :class="{ active: index === currentSlide }" @click="goToSlide(index)"></button>
             </div>
             <div class="project-image-title">{{ project.title }}</div>
             <div class="image-overlay" :class="{ hovered: isHovered }">
@@ -46,16 +35,18 @@
         </div>
         <div class="project-info">
             <h3>{{ project.title }}</h3>
-            <p>{{ project.description }}</p>
+            <p class="project-description" :class="{ expanded: isDescriptionExpanded }">
+                {{ project.description }}
+            </p>
+            <button v-if="showDescriptionToggle" type="button" class="description-toggle" @click="isDescriptionExpanded = !isDescriptionExpanded">
+                {{ isDescriptionExpanded ? 'Ver menos' : 'Ver más' }}
+            </button>
             <div class="project-tech">
-                <TechChip
-                    v-for="tech in project.technologies"
-                    :key="tech"
-                    :name="tech"
-                    :icon="tech"
-                    :interactive="false"
-                />
+                <TechChip v-for="tech in visibleTechnologies" :key="tech" :name="tech" :icon="tech" :interactive="false" />
             </div>
+            <button v-if="showTechToggle" type="button" class="description-toggle tech-toggle" @click="isTechExpanded = !isTechExpanded">
+                {{ isTechExpanded ? 'Ver menos tecnologías' : 'Ver más tecnologías' }}
+            </button>
         </div>
         <Teleport to="body">
             <Transition name="modal">
@@ -63,25 +54,13 @@
                     <button type="button" class="modal-close" aria-label="Cerrar imagen" @click="closeModal">
                         <span />
                     </button>
-                    <button
-                        v-if="hasMultipleImages"
-                        type="button"
-                        class="modal-nav prev"
-                        aria-label="Imagen anterior"
-                        @click="prevSlide"
-                    ></button>
+                    <button v-if="hasMultipleImages" type="button" class="modal-nav prev" aria-label="Imagen anterior" @click="prevSlide"></button>
                     <div class="modal-frame">
                         <div class="modal-image-shell">
                             <img :src="activeImage.src" :alt="project.title" class="modal-image" />
                         </div>
                     </div>
-                    <button
-                        v-if="hasMultipleImages"
-                        type="button"
-                        class="modal-nav next"
-                        aria-label="Imagen siguiente"
-                        @click="nextSlide"
-                    ></button>
+                    <button v-if="hasMultipleImages" type="button" class="modal-nav next" aria-label="Imagen siguiente" @click="nextSlide"></button>
                 </div>
             </Transition>
         </Teleport>
@@ -92,115 +71,124 @@
 import { computed, onBeforeUnmount, onMounted, onUnmounted, ref, watch } from 'vue';
 import TechChip from './TechChip.vue';
 const props = defineProps({
-  project: {
-    type: Object,
-    required: true,
-  },
+    project: {
+        type: Object,
+        required: true,
+    },
 });
 
 const isHovered = ref(false);
 const currentSlide = ref(0);
 const isModalOpen = ref(false);
+const isDescriptionExpanded = ref(false);
+const isTechExpanded = ref(false);
 let autoplayId = null;
 
 const images = computed(() =>
-  (props.project.images?.length ? props.project.images : [props.project.image]).map((image) =>
-    typeof image === 'string'
-      ? { src: image, zoom: 1, position: '50% 50%' }
-      : {
-          src: image.src,
-          zoom: Number.isFinite(Number(image.zoom)) ? Number(image.zoom) : 1,
-          position: image.position || '50% 50%',
-        },
-  ),
+    (props.project.images?.length ? props.project.images : [props.project.image]).map((image) =>
+        typeof image === 'string'
+            ? { src: image, zoom: 1, position: '50% 50%' }
+            : {
+                src: image.src,
+                zoom: Number.isFinite(Number(image.zoom)) ? Number(image.zoom) : 1,
+                position: image.position || '50% 50%',
+            },
+    ),
 );
 const hasMultipleImages = computed(() => images.value.length > 1);
 const hasLinks = computed(() => Boolean(props.project.github || props.project.demo));
+const showDescriptionToggle = computed(() => {
+    const description = String(props.project.description || '');
+    return description.includes('\n') || description.length > 300;
+});
+const technologies = computed(() => props.project.technologies || []);
+const showTechToggle = computed(() => technologies.value.length > 8);
+const visibleTechnologies = computed(() => (isTechExpanded.value ? technologies.value : technologies.value.slice(0, 8)));
 const activeImage = computed(() => images.value[currentSlide.value] || { src: props.project.image, zoom: 1, position: '50% 50%' });
 const imageStyle = computed(() => ({
-  '--image-scale': activeImage.value.zoom,
-  '--image-hover-scale': Math.min(activeImage.value.zoom + 0.04, 1.42),
-  objectPosition: activeImage.value.position,
+    '--image-scale': activeImage.value.zoom,
+    '--image-hover-scale': Math.min(activeImage.value.zoom + 0.04, 1.42),
+    objectPosition: activeImage.value.position,
 }));
 const goToSlide = (index) => {
-  currentSlide.value = index;
+    currentSlide.value = index;
 };
 
 const openModal = () => {
-  isModalOpen.value = true;
-  stopAutoplay();
+    isModalOpen.value = true;
+    stopAutoplay();
 };
 
 const closeModal = () => {
-  isModalOpen.value = false;
-  resumeAutoplay();
+    isModalOpen.value = false;
+    resumeAutoplay();
 };
 
 const nextSlide = () => {
-  currentSlide.value = (currentSlide.value + 1) % images.value.length;
+    currentSlide.value = (currentSlide.value + 1) % images.value.length;
 };
 
 const prevSlide = () => {
-  currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length;
+    currentSlide.value = (currentSlide.value - 1 + images.value.length) % images.value.length;
 };
 
 const startAutoplay = () => {
-  if (!hasMultipleImages.value || autoplayId || isModalOpen.value) {
-    return;
-  }
+    if (!hasMultipleImages.value || autoplayId || isModalOpen.value) {
+        return;
+    }
 
-  autoplayId = window.setInterval(nextSlide, 4500);
+    autoplayId = window.setInterval(nextSlide, 4500);
 };
 
 const stopAutoplay = () => {
-  if (autoplayId) {
-    window.clearInterval(autoplayId);
-    autoplayId = null;
-  }
+    if (autoplayId) {
+        window.clearInterval(autoplayId);
+        autoplayId = null;
+    }
 };
 
 const pauseAutoplay = () => stopAutoplay();
 const resumeAutoplay = () => {
-  if (!isModalOpen.value) {
-    startAutoplay();
-  }
+    if (!isModalOpen.value) {
+        startAutoplay();
+    }
 };
 
 const handleKeydown = (event) => {
-  if (!isModalOpen.value) {
-    return;
-  }
+    if (!isModalOpen.value) {
+        return;
+    }
 
-  if (event.key === 'Escape') {
-    closeModal();
-  }
+    if (event.key === 'Escape') {
+        closeModal();
+    }
 
-  if (event.key === 'ArrowLeft' && hasMultipleImages.value) {
-    prevSlide();
-  }
+    if (event.key === 'ArrowLeft' && hasMultipleImages.value) {
+        prevSlide();
+    }
 
-  if (event.key === 'ArrowRight' && hasMultipleImages.value) {
-    nextSlide();
-  }
+    if (event.key === 'ArrowRight' && hasMultipleImages.value) {
+        nextSlide();
+    }
 };
 
 watch(isModalOpen, (open) => {
-  document.body.style.overflow = open ? 'hidden' : '';
+    document.body.style.overflow = open ? 'hidden' : '';
 });
 
 onMounted(() => {
-  window.addEventListener('keydown', handleKeydown);
+    window.addEventListener('keydown', handleKeydown);
 });
 
 startAutoplay();
 
 onBeforeUnmount(() => {
-  stopAutoplay();
+    stopAutoplay();
 });
 
 onUnmounted(() => {
-  window.removeEventListener('keydown', handleKeydown);
-  document.body.style.overflow = '';
+    window.removeEventListener('keydown', handleKeydown);
+    document.body.style.overflow = '';
 });
 </script>
 
@@ -573,6 +561,45 @@ onUnmounted(() => {
     margin-bottom: 1rem;
     line-height: 1.6;
     font-size: 0.95rem;
+}
+
+.project-description {
+    display: -webkit-box;
+    -webkit-line-clamp: 8;
+    -webkit-box-orient: vertical;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.project-description.expanded {
+    display: block;
+    -webkit-line-clamp: unset;
+    white-space: pre-line;
+    overflow-wrap: anywhere;
+    overflow: visible;
+}
+
+.description-toggle {
+    margin: -0.35rem 0 1rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--color-accent-secondary);
+    font-size: 0.88rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.description-toggle:hover {
+    color: var(--color-accent-primary);
+    transform: translateY(-1px);
+}
+
+.tech-toggle {
+    margin-top: 0.1rem;
 }
 
 .project-tech {

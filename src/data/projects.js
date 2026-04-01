@@ -55,57 +55,10 @@
   },
   {
     id: 2,
-    title: 'TaskFlow',
-    description:
-      'Desarrollo de una plataforma visual de gestion de tareas con tableros, listas y tarjetas arrastrables. Permite crear, editar y eliminar tableros, controlar permisos por rol, compartir tableros publicos y trabajar con una experiencia moderna y responsiva enfocada en productividad.',
-    image: '/images/projects/taskflow/taskflow-home.svg',
-    images: [
-      {
-        src: '/images/projects/taskflow/home.png',
-        zoom: 1.04,
-        position: '50% 34%',
-      },
-      {
-        src: '/images/projects/taskflow/demo-mode.png',
-        zoom: 1.18,
-        position: '50% 36%',
-      },
-      {
-        src: '/images/projects/taskflow/registered-mode.png',
-        zoom: 1.15,
-        position: '50% 34%',
-      },
-      {
-        src: '/images/projects/taskflow/dashboard.png',
-        zoom: 1.1,
-        position: '50% 28%',
-      },
-      {
-        src: '/images/projects/taskflow/dashboard-config.png',
-        zoom: 1.12,
-        position: '50% 30%',
-      },
-    ],
-    technologies: [
-      'Laravel 12',
-      'PHP 8.2',
-      'Vue 3',
-      'Composition API',
-      'Inertia.js',
-      'Tailwind CSS',
-      'MySQL',
-      'Laravel Sanctum',
-      'VueDraggable',
-    ],
-    github: null,
-    demo: '',
-    featured: true,
-  },
-  {
-    id: 3,
     title: "Adam's Discount Tires",
-    description:
-      'Aplicacion web para la gestion y venta de llantas, rines y servicios automotrices. Combina una interfaz publica para clientes con un panel interno para pedidos, inventario, usuarios, reportes y control operativo, centralizando procesos comerciales y mejorando la atencion al cliente.',
+    description: `Aplicación web para la gestión y venta de llantas, rines y servicios automotrices, con interfaz pública para clientes y panel administrativo para pedidos, inventario, usuarios y reportes, centralizando procesos comerciales y mejorando la atención.
+                  
+                  Mi participación activa contribuyó a la creación de funcionalidades clave y a su mantenimiento continuo, asegurando la estabilidad y evolución del sistema.`,
     image: '/images/projects/adams/home.png',
     images: [
       {
@@ -154,10 +107,11 @@
     featured: true,
   },
   {
-    id: 4,
+    id: 3,
     title: 'Touris World',
-    description:
-      'Plataforma integral para la gestión y reserva de alojamientos y experiencias turísticas, desarrollada con Laravel y Vue.js utilizando Inertia. Permite la administración completa de hoteles, habitaciones, tipologías, reservas, usuarios y experiencias, así como la gestión de pagos y reseñas. Incluye flujos optimizados de checkout, confirmaciones y un sistema de notificaciones automatizadas, garantizando una experiencia eficiente tanto para usuarios como para administradores.',
+    description: `Plataforma integral para la gestión y reserva de alojamientos y experiencias turísticas, desarrollada con Laravel y Vue.js (Inertia). Permite administrar hoteles, habitaciones, tipologías, reservas, usuarios y experiencias, además de gestionar pagos y reseñas. Incluye flujos de checkout optimizados, confirmaciones y notificaciones automatizadas, brindando una experiencia ágil tanto para usuarios como para administradores.
+
+                  Mi participación activa contribuyó a la creación de funcionalidades clave, como la integración de la pasarela de pagos Wompi y la gestión de servicios hoteleros, además de su mantenimiento continuo, asegurando la estabilidad y evolución del sistema.`,
     image: '/images/projects/touris/home-hotels.png',
     images: [
       {
@@ -210,6 +164,54 @@
     ],
     github: null,
     demo: 'https://touris.world',
+    featured: true,
+  },
+  {
+    id: 4,
+    title: 'TaskFlow',
+    description:
+      'Desarrollo de una plataforma visual de gestion de tareas con tableros, listas y tarjetas arrastrables. Permite crear, editar y eliminar tableros, controlar permisos por rol, compartir tableros publicos y trabajar con una experiencia moderna y responsiva enfocada en productividad.',
+    image: '/images/projects/taskflow/taskflow-home.svg',
+    images: [
+      {
+        src: '/images/projects/taskflow/home.png',
+        zoom: 1.04,
+        position: '50% 34%',
+      },
+      {
+        src: '/images/projects/taskflow/demo-mode.png',
+        zoom: 1.18,
+        position: '50% 36%',
+      },
+      {
+        src: '/images/projects/taskflow/registered-mode.png',
+        zoom: 1.15,
+        position: '50% 34%',
+      },
+      {
+        src: '/images/projects/taskflow/dashboard.png',
+        zoom: 1.1,
+        position: '50% 28%',
+      },
+      {
+        src: '/images/projects/taskflow/dashboard-config.png',
+        zoom: 1.12,
+        position: '50% 30%',
+      },
+    ],
+    technologies: [
+      'Laravel 12',
+      'PHP 8.2',
+      'Vue 3',
+      'Composition API',
+      'Inertia.js',
+      'Tailwind CSS',
+      'MySQL',
+      'Laravel Sanctum',
+      'VueDraggable',
+    ],
+    github: null,
+    demo: '',
     featured: true,
   },
 ]
