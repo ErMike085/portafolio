@@ -1,9 +1,9 @@
-<template>
+﻿<template>
     <section class="hero-section" id="home">
         <div class="container">
             <div class="hero-content">
                 <div class="hero-badge" data-animate>
-                    <span class="badge-text">> Disponible para trabajar</span>
+                    <span class="badge-text">Disponible para trabajar</span>
                 </div>
 
                 <h1 class="hero-title" data-animate>
@@ -32,7 +32,7 @@
                 <div class="hero-stats" data-animate>
                     <div class="stat-item">
                         <span class="stat-number">4+</span>
-                        <span class="stat-label">Años Experiencia</span>
+                        <span class="stat-label">Años de experiencia</span>
                     </div>
                     <div class="stat-item">
                         <span class="stat-number">15+</span>
@@ -321,3 +321,4 @@ onUnmounted(() => {
     }
 }
 </style>
+

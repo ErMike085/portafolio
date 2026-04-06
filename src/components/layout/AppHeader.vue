@@ -1,4 +1,4 @@
-<template>
+﻿<template>
     <header class="app-header" :class="{ 'scrolled': isScrolled }">
         <div class="container">
             <nav class="nav">
@@ -27,7 +27,7 @@ const logoText = ref('<Miguel Muñoz/>');
 
 const menuItems = ref([
     { id: 'home', label: 'Inicio' },
-    { id: 'about', label: 'Sobre mi' },
+    { id: 'about', label: 'Sobre mí' },
     { id: 'skills', label: 'Habilidades' },
     { id: 'projects', label: 'Proyectos' },
     { id: 'experience', label: 'Experiencia' },
@@ -209,3 +209,4 @@ onUnmounted(() => {
     }
 }
 </style>
+

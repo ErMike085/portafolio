@@ -3,7 +3,7 @@
     id: 1,
     title: 'POS Comercial Multisucursal',
     description:
-      'Sistema web de gestion comercial y POS para operacion por sucursales. Controla ventas, clientes, inventario, despachos, turnos y reportes; incluye ventas presenciales y a credito, impresion de facturas y etiquetas, y exportacion a PDF y Excel.',
+      'Sistema web de gestión comercial y POS para operación por sucursales. Controla ventas, clientes, inventario, despachos, turnos y reportes; incluye ventas presenciales y a crédito, impresión de facturas y etiquetas, y exportación a PDF y Excel.',
     image: '/images/projects/pos/dashboard.png',
     images: [
       {
@@ -170,7 +170,7 @@
     id: 4,
     title: 'TaskFlow',
     description:
-      'Desarrollo de una plataforma visual de gestion de tareas con tableros, listas y tarjetas arrastrables. Permite crear, editar y eliminar tableros, controlar permisos por rol, compartir tableros publicos y trabajar con una experiencia moderna y responsiva enfocada en productividad.',
+      'Desarrollo de una plataforma visual de gestión de tareas con tableros, listas y tarjetas arrastrables. Permite crear, editar y eliminar tableros, controlar permisos por rol, compartir tableros públicos y trabajar con una experiencia moderna y responsiva enfocada en productividad.',
     image: '/images/projects/taskflow/taskflow-home.svg',
     images: [
       {

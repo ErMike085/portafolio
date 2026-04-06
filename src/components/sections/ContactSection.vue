@@ -34,7 +34,7 @@
                         </div>
                         <div class="form-group">
                             <input type="email" id="email" v-model="form.email" required placeholder=" " />
-                            <label for="email">Email</label>
+                            <label for="email">Correo electrónico</label>
                         </div>
                         <div class="form-group">
                             <textarea id="message" v-model="form.message" required placeholder=" " rows="5"></textarea>
@@ -149,7 +149,7 @@ const handleSubmit = async (event) => {
 
     if (!isEndpointSecure(CONTACT_ENDPOINT)) {
         submitState.value = 'error';
-        submitMessage.value = 'El formulario no esta configurado de forma segura. Configura VITE_CONTACT_ENDPOINT.';
+        submitMessage.value = 'El formulario no está configurado de forma segura. Configura VITE_CONTACT_ENDPOINT.';
         return;
     }
 
@@ -161,7 +161,7 @@ const handleSubmit = async (event) => {
 
     if (Date.now() - formStartedAt.value < MIN_FILL_TIME_MS || form.value.website) {
         submitState.value = 'error';
-        submitMessage.value = 'No se pudo validar el envio.';
+        submitMessage.value = 'No se pudo validar el envío.';
         return;
     }
 
@@ -240,14 +240,14 @@ const handleSubmit = async (event) => {
         }
 
         submitState.value = 'success';
-        submitMessage.value = 'Mensaje enviado correctamente. Te respondere lo mas pronto posible.';
+        submitMessage.value = 'Mensaje enviado correctamente. Te responderé lo más pronto posible.';
         sessionStorage.setItem(LAST_SUBMIT_KEY, String(Date.now()));
         form.value = { name: '', email: '', message: '', website: '' };
         formStartedAt.value = Date.now();
         triggerBurst();
     } catch {
         submitState.value = 'error';
-        submitMessage.value = 'No se pudo enviar el mensaje. Intenta de nuevo o escribeme por correo directo.';
+        submitMessage.value = 'No se pudo enviar el mensaje. Intenta de nuevo o escríbeme por correo directo.';
     } finally {
         sending.value = false;
     }

@@ -14,7 +14,7 @@
                 </div>
                 <div class="footer-copyright">
                     <p>&copy; {{ currentYear }} {{ name }}. Todos los derechos reservados.</p>
-                    <p>Disenado y desarrollado con <span class="heart">&#10084;</span> y Vue.js</p>
+                    <p>Diseñado y desarrollado con <span class="heart">&#10084;</span> y Vue.js</p>
                 </div>
             </div>
         </div>

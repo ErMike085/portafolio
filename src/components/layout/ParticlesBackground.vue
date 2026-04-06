@@ -53,9 +53,9 @@ const particlesConfig = computed(() => {
         },
         links: {
             color: linkColor,
-            distance: isMobile ? 90 : isTablet ? 120 : 150,
-            enable: !isMobile,
-            opacity: isMobile ? 0 : isTablet ? 0.14 : 0.2,
+            distance: isMobile ? 110 : isTablet ? 120 : 150,
+            enable: true,
+            opacity: isMobile ? 0.16 : isTablet ? 0.14 : 0.2,
             width: 1
         },
         move: {
@@ -73,24 +73,24 @@ const particlesConfig = computed(() => {
                 enable: true,
                 area: isMobile ? 1400 : isTablet ? 1000 : 800
             },
-            value: isMobile ? 16 : isTablet ? 34 : 68
+            value: isMobile ? 24 : isTablet ? 34 : 68
         },
         opacity: {
-            value: isMobile ? 0.18 : 0.3,
+            value: isMobile ? 0.28 : 0.3,
             random: true,
             animation: {
-                enable: !isMobile,
-                speed: isMobile ? 0 : 0.5,
+                enable: true,
+                speed: isMobile ? 0.35 : 0.5,
                 minimumValue: 0.1,
                 sync: false
             }
         },
         size: {
-            value: isMobile ? 2.5 : 2,
+            value: isMobile ? 2.8 : 2,
             random: true,
             animation: {
-                enable: !isMobile,
-                speed: isMobile ? 0 : 2,
+                enable: true,
+                speed: isMobile ? 1.2 : 2,
                 minimumValue: 0.5,
                 sync: false
             }
@@ -99,23 +99,23 @@ const particlesConfig = computed(() => {
     interactivity: {
         events: {
             onHover: {
-                enable: !isMobile,
+                enable: true,
                 mode: 'grab'
             },
             onClick: {
-                enable: !isMobile,
+                enable: true,
                 mode: 'push'
             }
         },
         modes: {
             grab: {
-                distance: isMobile ? 0 : 140,
+                distance: isMobile ? 90 : 140,
                 links: {
                     opacity: 0.5
                 }
             },
             push: {
-                quantity: isMobile ? 0 : 2
+                quantity: isMobile ? 1 : 2
             }
         }
     }
@@ -164,6 +164,7 @@ onUnmounted(() => {
     height: 100%;
     z-index: 0;
     pointer-events: none;
+    opacity: 1;
 }
 
 #tsparticles {

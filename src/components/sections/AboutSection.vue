@@ -1,7 +1,7 @@
-<template>
+﻿<template>
     <section class="about-section" id="about">
         <div class="container">
-            <h2 class="section-title" data-animate>Sobre Mi</h2>
+            <h2 class="section-title" data-animate>Sobre mí</h2>
             <div class="about-content">
                 <div class="about-text" data-animate>
                     <p class="lead">{{ leadText }}</p>
@@ -30,12 +30,12 @@ import { ref } from 'vue';
 import profileImage from '@/assets/images/foto-perfil.jpeg';
 
 const leadText = ref('Transformando ideas en soluciones digitales robustas y elegantes.');
-const description = ref('Soy un desarrollador fullstack con mas de 4 anos de experiencia creando aplicaciones web escalables y de alto rendimiento. Me especializo en el ecosistema Vue.js y Laravel, y me apasiona escribir codigo limpio y mantenible. Mi enfoque combina la creatividad del frontend con la solidez del backend para ofrecer experiencias de usuario excepcionales y confiables.');
+const description = ref('Soy un desarrollador fullstack con más de 4 años de experiencia creando aplicaciones web escalables y de alto rendimiento. Me especializo en el ecosistema Vue.js y Laravel, y me apasiona escribir código limpio y mantenible. Mi enfoque combina la creatividad del frontend con la solidez del backend para ofrecer experiencias de usuario excepcionales y confiables.');
 
 const values = ref([
-    { icon: 'fas fa-rocket', title: 'Innovacion', description: 'Siempre uso tecnologias robustas y actualizadas para ofrecer soluciones efectivas.' },
-    { icon: 'fas fa-code', title: 'Calidad', description: 'Codigo limpio, testeable y con buenas practicas desde el inicio.' },
-    { icon: 'fas fa-users', title: 'Colaboracion', description: 'Trabajo en equipo y comunicacion efectiva para entender las necesidades.' },
+    { icon: 'fas fa-rocket', title: 'Innovación', description: 'Siempre uso tecnologías robustas y actualizadas para ofrecer soluciones efectivas.' },
+    { icon: 'fas fa-code', title: 'Calidad', description: 'Código limpio, testeable y con buenas prácticas desde el inicio.' },
+    { icon: 'fas fa-users', title: 'Colaboración', description: 'Trabajo en equipo y comunicación efectiva para entender las necesidades.' },
     { icon: 'fas fa-lock', title: 'Seguridad', description: 'Implemento medidas de seguridad robustas para proteger los datos de los usuarios.' }
 ]);
 </script>
@@ -56,7 +56,7 @@ const values = ref([
 .about-content {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 4rem;
+    gap: clamp(4rem, 7vw, 7rem);
     align-items: center;
 }
 
@@ -69,7 +69,7 @@ const values = ref([
 
 .about-text p {
     color: var(--color-text-secondary);
-    line-height: 1.8;
+    line-height: 1.65;
     margin-bottom: 2rem;
 }
 
@@ -106,19 +106,24 @@ const values = ref([
 .value-card p {
     font-size: 0.9rem;
     color: var(--color-text-tertiary);
+    line-height: 1.5;
     margin-bottom: 0;
 }
 
 .about-image {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-width: 0;
+    justify-self: end;
 }
 
 .image-wrapper {
     position: relative;
-    width: 320px;
-    height: 380px;
-    border-radius: 16px;
+    width: clamp(280px, 34vw, 460px);
+    aspect-ratio: 4 / 5;
+    height: auto;
+    border-radius: 20px;
     overflow: hidden;
     border: 1px solid var(--glass-border);
     background: linear-gradient(135deg, rgba(var(--glow-violet-rgb), 0.1), rgba(var(--glow-red-rgb), 0.04));
@@ -130,7 +135,7 @@ const values = ref([
     width: 100%;
     height: 100%;
     object-fit: cover;
-    object-position: 50% 20%;
+    object-position: 50% 18%;
     filter: saturate(1.02) contrast(1.04);
     transition: transform 0.45s ease;
 }
@@ -176,8 +181,12 @@ const values = ref([
     }
 
     .image-wrapper {
-        width: 250px;
-        height: 300px;
+        width: min(100%, 360px);
+        aspect-ratio: 4 / 5;
+    }
+
+    .about-image {
+        justify-self: center;
     }
 }
 
@@ -192,8 +201,8 @@ const values = ref([
     }
 
     .image-wrapper {
-        width: min(100%, 250px);
-        height: 280px;
+        width: min(100%, 320px);
     }
 }
 </style>
+
