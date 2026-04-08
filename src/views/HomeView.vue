@@ -38,13 +38,7 @@ useScrollAnimation();
 <style scoped>
 .home {
     position: relative;
-    isolation: isolate;
     min-height: 100vh;
     background: var(--color-bg-primary);
-}
-
-.home > :not(.particles-container) {
-    position: relative;
-    z-index: 1;
 }
 </style>

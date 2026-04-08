@@ -132,7 +132,9 @@ section {
   border-radius: var(--radius-sm);
   background: rgba(9, 13, 26, 0.62);
   color: var(--color-text-primary);
-  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  transition:
+    border-color 0.25s ease,
+    box-shadow 0.25s ease;
 }
 
 a {
